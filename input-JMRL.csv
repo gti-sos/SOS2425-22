@@ -1,0 +1,26 @@
+province,creation_year,id,portalId,postal_code,latitude,length,title,equipment_type,public_titularity,street_address,geometry
+Zaragoza,2012,9016,42182,50018,41.66893233,-0.8967708469,Unidad Administrativa de Jdos. Unipersonales de Zaragoza,justicia,TRUE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2012,9034,42182,50018,41.66893233,-0.8967708469,Oficina de Asistencia a las Víctimas del delito (Juzgado Decano de Zaragoza),justicia,TRUE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2012,9026,14284,50018,41.6693231,-0.8996679682,Juzgados de lo Mercantil,"justicia,otros-organismos",TRUE,"Pza Expo, 6",674846.7698669753 4615193.726395274
+Zaragoza,2013,20437,42182,50018,41.66893233,-0.8967708469,Servicio de Medio Abierto de Menores del IASS,justicia,FALSE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2013,20438,42182,50018,41.66893233,-0.8967708469,Oficina Pericial Judicial,justicia,FALSE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2012,9035,42182,50018,41.66893233,-0.8967708469,Fiscalia Menores,justicia,TRUE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2012,9028,14284,50018,41.6693231,-0.8996679682,Juzgados de la Contencioso Administrativo,"justicia,otros-organismos",TRUE,"Pza Expo, 6",674846.7698669753 4615193.726395274
+Zaragoza,2013,20433,42182,50018,41.66893233,-0.8967708469,Servicio de Orientación Jurídica (SOJ),justicia,FALSE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2012,8639,2027,50003,41.65914216,-0.8938540198,Audiencia Provincial de Zaragoza (2-4-5),justicia,TRUE,"Avda. Pablo Gargallo, 3",675358.4256750043 4614075.142535333
+Zaragoza,2012,9032,14284,50018,41.6693231,-0.8996679682,Juzgados de lo Social,"justicia,otros-organismos",TRUE,"Pza Expo, 6",674846.7698669753 4615193.726395274
+Zaragoza,2012,9020,42182,50018,41.66893233,-0.8967708469,Juzgados de lo Penal,"justicia,otros-organismos",TRUE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2013,20230,42182,50018,41.66893233,-0.8967708469,Juzgado de Guardia,justicia,FALSE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2013,20434,42182,50018,41.66893233,-0.8967708469,Fiscalía Provincial,justicia,FALSE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2013,20435,42182,50018,41.66893233,-0.8967708469,Oficina Común de Apoyo Técnico Psicosocial,justicia,FALSE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2013,20439,42182,50018,41.66893233,-0.8967708469,Decanato de los Juzgados de Zaragoza,justicia,FALSE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2012,9029,42182,50018,41.66893233,-0.8967708469,Juzgados de Violencia sobre la Mujer,"justicia,otros-organismos",TRUE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2012,9025,42182,50018,41.66893233,-0.8967708469,Fiscalía de Guardia,justicia,TRUE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2012,9023,42182,50018,41.66893233,-0.8967708469,Juzgados de Instrucción,"justicia,otros-organismos",TRUE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2013,20436,42182,50018,41.66893233,-0.8967708469,Servicio de Actos de Comunicaciones y Embargos (SACE),justicia,FALSE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2012,9021,14284,50018,41.6693231,-0.8996679682,Juzgados Primera Instancia,"justicia,otros-organismos",TRUE,"Pza Expo, 6",674846.7698669753 4615193.726395274
+Zaragoza,2012,9018,42182,50018,41.66893233,-0.8967708469,Juzgado Decano,"justicia,otros-organismos",TRUE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2012,9019,42182,50018,41.66893233,-0.8967708469,Servicio común de Actos de Comunicación y Ejecución,justicia,TRUE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2012,9033,42182,50018,41.66893233,-0.8967708469,Juzgados de Vigilancia Penitenciaria,"justicia,otros-organismos",TRUE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2012,9036,42182,50018,41.66893233,-0.8967708469,Juzgado de Menores nº1,justicia,TRUE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
+Zaragoza,2012,9037,42182,50018,41.66893233,-0.8967708469,Juzgado de Menores nº2,"justicia,otros-organismos",TRUE,"Avda. José Atarés, 89-97",675089.0192155159 4615156.222776663
