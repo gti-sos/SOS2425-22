@@ -19,19 +19,14 @@ let csvContent = parse(fileContent, {
 });
 
 //FUNCIÓN PARA HACER LA MEDIA DE LAS LATITUDES
-function averageLatitude(){
-    let lat = [];
+function averageLatitude2(){
     let sum = 0;
-    //RECORREMOS CADA OBJETO DE LA LISTA
-    for (let i = 0; i < csvContent.length; i++) {
-        //SELECCIONAMOS UNA COLUMNA CON DATOS NUMÉRICOS Y GUARDAMOS LOS DISTINTOS VALORES
-        lat[i]=csvContent[i].latitude;
-    }
-    //RECORREMOS LA LISTA CON LOS DATOS NÚMERICOS Y LOS SUMAMOS
-    let map1 = lat.map((x) => sum + x)
-    //HACEMOS LA MEDIA
-    return map1[0]/lat.length
+    //HACEMOS UN ARRAY SOLO CON LAS LATITUDES (MAP) Y SUMAMOS TODOS SUS ELEMENTOS (REDUCE)
+    let lat = csvContent.map((x) => x.latitude)
+                        .reduce((sum, value) => sum + value, sum);
+    //DEVOLVEMOS LA MEDIA
+    return lat/csvContent.length
 }
 
 //IMPRIMIMOS POR PANTALLA LA FUNCIÓN PARA COMPROBAR QUE FUNCIONA
-console.log(averageLatitude())
+console.log(averageLatitude2())
