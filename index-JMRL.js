@@ -18,20 +18,21 @@ let csvContent = parse(fileContent, {
     }
 });
 
+//FUNCIÓN PARA HACER LA MEDIA DE LAS LATITUDES
 function averageLatitude(){
-//RECORREMOS CADA OBJETO DE LA LISTA
-let lat = [];
-let sum = 0;
-for (let i = 0; i < csvContent.length; i++) {
-    //SELECCIONAMOS UNA COLUMNA CON DATOS NUMÉRICOS Y GUARDAMOS LOS DISTINTOS VALORES
-    lat[i]=csvContent[i].latitude;
-}
-//RECORREMOS LA LISTA CON LOS DATOS NÚMERICOS Y LOS SUMAMOS
-for (let i = 0; i < lat.length; i++) {
-    sum += lat[i]
-}
-//HACEMOS LA MEDIA
-return sum/lat.length
+    let lat = [];
+    let sum = 0;
+    //RECORREMOS CADA OBJETO DE LA LISTA
+    for (let i = 0; i < csvContent.length; i++) {
+        //SELECCIONAMOS UNA COLUMNA CON DATOS NUMÉRICOS Y GUARDAMOS LOS DISTINTOS VALORES
+        lat[i]=csvContent[i].latitude;
+    }
+    //RECORREMOS LA LISTA CON LOS DATOS NÚMERICOS Y LOS SUMAMOS
+    for (let i = 0; i < lat.length; i++) {
+        sum += lat[i]
+    }
+    //HACEMOS LA MEDIA
+    return sum/lat.length
 }
 
 //IMPRIMIMOS POR PANTALLA LA FUNCIÓN PARA COMPROBAR QUE FUNCIONA
