@@ -28,11 +28,9 @@ function averageLatitude(){
         lat[i]=csvContent[i].latitude;
     }
     //RECORREMOS LA LISTA CON LOS DATOS NÚMERICOS Y LOS SUMAMOS
-    for (let i = 0; i < lat.length; i++) {
-        sum += lat[i]
-    }
+    let map1 = lat.map((x) => sum + x)
     //HACEMOS LA MEDIA
-    return sum/lat.length
+    return map1[0]/lat.length
 }
 
 //IMPRIMIMOS POR PANTALLA LA FUNCIÓN PARA COMPROBAR QUE FUNCIONA
