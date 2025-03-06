@@ -1,11 +1,11 @@
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 16078;
-const resAMG = mediaMissingMenAMG(dat_AMG);
+//const resAMG = mediaMissingMenAMG(dat_AMG);
 
-import { datos_AMG } from "./index-AMG";
-const dat_AMG = datos_AMG;
-
+//import { datos_AMG } from "./index-AMG.js";
+//const dat_AMG = datos_AMG;
+/*
 function mediaMissingMenAMG(dat_AMG){
     let ac = 0;
     let lista = dat_AMG;
@@ -19,7 +19,7 @@ function mediaMissingMenAMG(dat_AMG){
 app.get("/samples/AMG",(request,response) => {
     response.send(`La media de hombres desaparecidos en provincias que empiezan por la A es ${resAMG}`);
 });
-
+*/
 app.use("/about",express.static("./public"));
 
 app.get("/hello",(request,response) => {
