@@ -1,4 +1,4 @@
-let datos = [{
+let datos_AMG = [{
     year:2023,
     province:"Albacete",
     missing_men:95,
@@ -87,4 +87,6 @@ function mediaMissingMen(dat){
     return ac/lista.length; 
 };
 
-console.log(mediaMissingMen(datos));
+console.log(mediaMissingMen(datos_AMG));
+
+export {datos_AMG};

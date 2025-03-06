@@ -1,6 +1,24 @@
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 16078;
+const resAMG = mediaMissingMenAMG(dat_AMG);
+
+import { datos_AMG } from "./index-AMG";
+const dat_AMG = datos_AMG;
+
+function mediaMissingMenAMG(dat_AMG){
+    let ac = 0;
+    let lista = dat_AMG;
+    lista.filter(n=>n.province.startsWith("A")) 
+    .forEach(n => {
+        ac = ac + n.missing_men;
+    });
+    return ac/lista.length; 
+};
+
+app.get("/samples/AMG",(request,response) => {
+    response.send(`La media de hombres desaparecidos en provincias que empiezan por la A es ${resAMG}`);
+});
 
 app.use("/about",express.static("./public"));
 
