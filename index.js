@@ -1,5 +1,9 @@
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
 import express from "express";
 const app = express();
+const cool = require("cool-ascii-faces")
 const PORT = process.env.PORT || 16078;
 
 
@@ -17,16 +21,27 @@ function mediaMissingMenAMG(dat_AMG){
     return ac/lista.length; 
 };
 
-app.get("/samples/AMG",(request,response) => {
+app.get("/samples/AMG", (request,response) => {
     response.send(`La media de hombres desaparecidos en provincias que empiezan por la A es ${resAMG}`);
 });
 
-app.use("/about",express.static("./public"));
+import { averageLatitude2 } from "./index-JMRL.js"
+let resJMRL = averageLatitude2();
+app.get("/samples/JMRL", (request,response) => {
+    response.send(`La media de la latitud de los centros jurídicos de Zaragoza es ${resJMRL}`);
+});
 
-app.get("/hello",(request,response) => {
+
+app.use("/about", express.static("./public"));
+
+app.get("/hello", (request,response) => {
     response.send("Hello from the server!");
 });
 
-app.listen(PORT,()=>{
+app.get("/cool", (request,response) => {
+    response.send(cool());
+});
+
+app.listen(PORT, ()=>{
     console.log(`Server running on ${PORT}!`);
 });

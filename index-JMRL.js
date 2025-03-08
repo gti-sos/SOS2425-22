@@ -1,3 +1,8 @@
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
+export { averageLatitude2 }
+
 // FUNCIONES PARA LEER Y PARSEAR EL CSV RESPECTIVAMENTE
 const { readFileSync } = require('fs');
 const { parse } = require('csv-parse/sync');
@@ -25,8 +30,8 @@ function averageLatitude2(){
     let lat = csvContent.map((x) => x.latitude)
                         .reduce((sum, value) => sum + value, sum);
     //DEVOLVEMOS LA MEDIA
-    return lat/csvContent.length
+    return lat/csvContent.length;
 }
 
 //IMPRIMIMOS POR PANTALLA LA FUNCIÓN PARA COMPROBAR QUE FUNCIONA
-console.log(averageLatitude2())
+console.log(averageLatitude2());
