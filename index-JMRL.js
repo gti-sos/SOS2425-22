@@ -1,7 +1,7 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
-export { averageLatitude2 }
+export { averageLatitude2, csvContent }
 
 // FUNCIONES PARA LEER Y PARSEAR EL CSV RESPECTIVAMENTE
 const { readFileSync } = require('fs');
