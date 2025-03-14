@@ -43,12 +43,12 @@ app.get("/samples/JMRL", (request,response) => {
 });
 
 // TAREA 11 JMRL - L05
-/*
+
 app.get(BASE_API + recurso, (request, response) => {
     console.log("New GET to /ministry-of-justice-in-zaragoza");
     response.send(JSON.stringify(dataJMRL));
 });
-*/
+
 // TAREA 13 JMRL - L05
 let initialData = [];
 app.get(BASE_API + recurso + "/loadInitialData", (request, response) =>  {
@@ -57,7 +57,7 @@ app.get(BASE_API + recurso + "/loadInitialData", (request, response) =>  {
         for (let i = 0; i<10; i++){
                 initialData[i] = dataJMRL[i]
         }
-        response.send()
+        response.send(initialData)
     }
 
     response.send(JSON.stringify(initialData));
