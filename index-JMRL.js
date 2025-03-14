@@ -1,3 +1,4 @@
+import coolAsciiFaces from 'cool-ascii-faces';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
