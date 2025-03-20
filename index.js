@@ -56,14 +56,29 @@ app.get(BASE_API + recurso + "/loadInitialData", (request, response) =>  {
         for (let i = 0; i<10; i++){
                 initialData[i] = dataJMRL[i]
         }
-        response.send(initialData)
     }
 
-    response.send(JSON.stringify(initialData));
+    response.send(initialData);
+    response.sendStatus(200)
 });
 
+// TAREA 14 JMRL - L05
+// PETICION  DELETE A RECURSO "/ministry-of-justice-in-zaragoza"
+app.delete(BASE_API + recurso, (request, response) => {
+    console.log("DELETE to /ministry-of-justice-in-zaragoza");
+    response.send();
+});
 
+//PETICION POST A RECURSO "/ministry-of-justice-in-zaragoza"
+app.post(BASE_API + recurso,(request,response)=>{
+    console.log("POST to /contacts");
+    console.log(`<${request.body}>`);
 
+    let newContact = request.body;
+    contacts.push(newContact);
+
+    response.sendStatus(201);
+});
 
 app.listen(PORT, ()=>{
     console.log(`Server running on ${PORT}!`);
