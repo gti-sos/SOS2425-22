@@ -56,7 +56,7 @@ app.get(BASE_API + recurso + "/loadInitialData", (request, response) =>  {
         for (let i = 0; i<10; i++){
                 initialData[i] = dataJMRL[i]
         }
-        response.send()
+        response.send(initialData)
     }
 
     response.send(JSON.stringify(initialData));
