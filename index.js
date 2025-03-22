@@ -33,11 +33,13 @@ app.get("/samples/AMG", (request,response) => {
     response.send(`La media de hombres desaparecidos en provincias que empiezan por la A es ${resAMG}`);
 });
 
-// TAREA L04 JMRL
+//DATOS JMRL
 import { averageLatitude2, csvContent } from "./index-JMRL.js"
 let resJMRL = averageLatitude2();
 let dataJMRL = csvContent;
 const recurso = "/ministry-of-justice-in-zaragoza";
+
+// TAREA JMRL - L04
 app.get("/samples/JMRL", (request, response) => {
     response.send(`La media de la latitud de los centros jurídicos de Zaragoza es ${resJMRL}`);
 });
@@ -87,9 +89,9 @@ app.put(BASE_API + recurso, (request, response) => {
 });
 
 //PETICION GET A RECURSO "../creation_year" 
-app.get(BASE_API + recurso +" /creation_year", (request, response) => {
+app.get(BASE_API + recurso +"/:creation_year", (request, response) => {
     let creationYear = Number(request.params.creation_year); 
-    let object = dataJMRL.find(object => object.creation_year === creationYear);
+    let object = dataJMRL.filter((x) => (x).creation_year === creationYear);
     
     if (!object) {
         return response.sendStatus(404);
@@ -114,7 +116,7 @@ app.put(BASE_API + recurso +"/:creation_year", (request, response) => {
         return res.sendStatus(400);
     }
     
-    let i = siniestralidadData2023.findIndex(object => object.creation_year === Number(creationYear));
+    let i = dataJMRL.findIndex(object => object.creation_year === Number(creationYear));
     if (i === -1) {
         return response.sendStatus(404);
     }
