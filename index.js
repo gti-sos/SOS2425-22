@@ -38,7 +38,7 @@ import { averageLatitude2, csvContent } from "./index-JMRL.js"
 let resJMRL = averageLatitude2();
 let dataJMRL = csvContent;
 const recurso = "/ministry-of-justice-in-zaragoza";
-app.get("/samples/JMRL", (request,response) => {
+app.get("/samples/JMRL", (request, response) => {
     response.send(`La media de la latitud de los centros jurídicos de Zaragoza es ${resJMRL}`);
 });
 
@@ -62,16 +62,17 @@ app.get(BASE_API + recurso + "/loadInitialData", (request, response) =>  {
     response.send(initialData);
     response.sendStatus(200);
 });
-
+ 
 // TAREA 14 JMRL - L05
 // PETICION  DELETE A RECURSO "/ministry-of-justice-in-zaragoza"
 app.delete(BASE_API + recurso, (request, response) => {
-    console.log("DELETE to /ministry-of-justice-in-zaragoza");
-    response.send();
+    dataJMRL = [];
+    console.log("Todos los datos han sido eliminados.");
+    response.sendStatus(200); 
 });
 
 //PETICION POST A RECURSO "/ministry-of-justice-in-zaragoza"
-app.post(BASE_API + recurso,(request,response)=>{
+app.post(BASE_API + recurso,(request, response) => {
     console.log("POST to /contacts");
     console.log(`<${request.body}>`);
 
@@ -80,7 +81,62 @@ app.post(BASE_API + recurso,(request,response)=>{
     response.sendStatus(201);
 });
 
-app.listen(PORT, ()=>{
+//PETICION PUT (NO SE PUEDE HACER) A RECURSO "/ministry-of-justice-in-zaragoza"
+app.put(BASE_API + recurso, (request, response) => {
+    response.sendStatus(405);
+});
+
+//PETICION GET A RECURSO "../creation_year" 
+app.get(BASE_API + recurso +" /creation_year", (request, response) => {
+    let creationYear = Number(request.params.creation_year); 
+    let object = dataJMRL.find(object => object.creation_year === creationYear);
+    
+    if (!object) {
+        return response.sendStatus(404);
+    }
+
+    response.send(object);
+    response.sendStatus(200);
+});
+
+//PETICION POST (NO SE PUEDE HACER) A RECURSO "../creation_year"
+app.post(BASE_API + recurso + "/:creation_year", (request, response) => {    
+    response.sendStatus(405);
+});
+
+//PETICION PUT A RECURSO "../creation_year"
+app.put(BASE_API + recurso +"/:creation_year", (request, response) => {
+    let {province, creation_year, id, portalId, postal_code, latitude, 
+            lenght, title, equipment_type, public_titularity, street_address, geometry} = req.body;
+    let creationYear = req.params.creation_year;    
+    
+    if (creation_year !== Number(creationYear)) {
+        return res.sendStatus(400);
+    }
+    
+    let i = siniestralidadData2023.findIndex(object => object.creation_year === Number(creationYear));
+    if (i === -1) {
+        return response.sendStatus(404);
+    }
+    siniestralidadData2023[i] = req.body;
+
+    response.sendStatus(200);
+});
+
+//DELETE DE UN DATO ESPECIFICO
+app.delete(BASE_API + recurso + "/:creation_year", (request, response) => {
+    let creationYear = request.params.creation_year;    
+    let i = dataJMRL.findIndex(object => object.creation_year === Number(creationYear));
+    
+    if (i === -1) {
+        return res.sendStatus(404);
+    }
+
+    dataJMRL=dataJMRL.filter(sanction => sanction.creation_year !== Number(creationYear));
+    res.sendStatus(200);
+});
+
+app.listen(PORT, () => {
     console.log(`Server running on ${PORT}!`);
 
 });
