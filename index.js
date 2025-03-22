@@ -88,10 +88,10 @@ app.put(BASE_API + recurso, (request, response) => {
     response.sendStatus(405);
 });
 
-//PETICION GET A RECURSO "../creation_year" 
-app.get(BASE_API + recurso +"/:creation_year", (request, response) => {
-    let creationYear = Number(request.params.creation_year); 
-    let object = dataJMRL.filter((x) => (x).creation_year === creationYear);
+//PETICION GET A RECURSO "../id" 
+app.get(BASE_API + recurso +"/:id", (request, response) => {
+    let id2 = Number(request.params.id); 
+    let object = dataJMRL.find(object => object.id === id2);
     
     if (!object) {
         return response.sendStatus(404);
@@ -101,40 +101,40 @@ app.get(BASE_API + recurso +"/:creation_year", (request, response) => {
     response.sendStatus(200);
 });
 
-//PETICION POST (NO SE PUEDE HACER) A RECURSO "../creation_year"
-app.post(BASE_API + recurso + "/:creation_year", (request, response) => {    
+//PETICION POST (NO SE PUEDE HACER) A RECURSO "../id"
+app.post(BASE_API + recurso + "/:id", (request, response) => {    
     response.sendStatus(405);
 });
 
-//PETICION PUT A RECURSO "../creation_year"
-app.put(BASE_API + recurso +"/:creation_year", (request, response) => {
+//PETICION PUT A RECURSO "../id"
+app.put(BASE_API + recurso +"/:id", (request, response) => {
     let {province, creation_year, id, portalId, postal_code, latitude, 
             lenght, title, equipment_type, public_titularity, street_address, geometry} = req.body;
-    let creationYear = req.params.creation_year;    
+    let id2 = req.params.id;    
     
-    if (creation_year !== Number(creationYear)) {
+    if (id !== Number(id2)) {
         return res.sendStatus(400);
     }
     
-    let i = dataJMRL.findIndex(object => object.creation_year === Number(creationYear));
+    let i = dataJMRL.findIndex(object => object.id === Number(id2));
     if (i === -1) {
         return response.sendStatus(404);
     }
-    siniestralidadData2023[i] = req.body;
+    dataJMRL[i] = req.body;
 
     response.sendStatus(200);
 });
 
 //DELETE DE UN DATO ESPECIFICO
-app.delete(BASE_API + recurso + "/:creation_year", (request, response) => {
-    let creationYear = request.params.creation_year;    
-    let i = dataJMRL.findIndex(object => object.creation_year === Number(creationYear));
+app.delete(BASE_API + recurso + "/:id", (request, response) => {
+    let id2 = request.params.id;    
+    let i = dataJMRL.findIndex(object => object.id === Number(id2));
     
     if (i === -1) {
         return res.sendStatus(404);
     }
 
-    dataJMRL=dataJMRL.filter(sanction => sanction.creation_year !== Number(creationYear));
+    dataJMRL=dataJMRL.filter(sanction => sanction.id !== Number(id2));
     res.sendStatus(200);
 });
 
