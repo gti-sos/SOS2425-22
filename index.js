@@ -62,9 +62,9 @@ app.get(BASE_API + recurso, (request, response) => {
     }if (creation_year!==undefined){
         dataJMRLFilter=dataJMRLFilter.filter(stat => stat.creation_year === Number(creation_year));
     }if (portalId!==undefined){
-        dataJMRLFilter=dataJMRLFilter.filter(stat => stat.portalId=== Number(portalId));
+        dataJMRLFilter=dataJMRLFilter.filter(stat => stat.portalId === Number(portalId));
     }if (postal_code!==undefined){
-        dataJMRLFilter=dataJMRLFilter.filter(stat => stat.postal_code>= Number(postal_code));
+        dataJMRLFilter=dataJMRLFilter.filter(stat => stat.postal_code === Number(postal_code));
     }
 
     response.send(dataJMRLFilter);
