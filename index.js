@@ -89,12 +89,20 @@ app.delete(BASE_API + recurso, (request, response) => {
 
 //PETICION POST A RECURSO "/ministry-of-justice-in-zaragoza"
 app.post(BASE_API + recurso,(request, response) => {
-    console.log("POST to /contacts");
-    console.log(`<${request.body}>`);
+    let {province, creation_year, id, portalId, postal_code, latitude, 
+        lenght, title, equipment_type, public_titularity, street_address, geometry} = req.body
 
-    let newMinistery = request.body;
-    dataJMRL.push(newMinistery);
-    response.sendStatus(201);
+    if (province === undefined || creation_year ===undefined || id === undefined || portalId=== undefined || 
+        postal_code === undefined || latitude === undefined || lenght === undefined || title === undefined || equipment_type === undefined
+        || public_titularity === undefined || street_address === undefined || geometry === undefined) {
+            return res.sendStatus(400);
+    } if(dataJMRL.some(row=>row.id === id)){
+        return res.sendStatus(409);
+    }
+
+    let newRow = req.body
+    dataJMRL.push(newRow)
+    res.sendStatus(201);
 });
 
 //PETICION PUT (NO SE PUEDE HACER) A RECURSO "/ministry-of-justice-in-zaragoza"
