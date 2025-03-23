@@ -51,6 +51,30 @@ app.get(BASE_API + recurso, (request, response) => {
     response.sendStatus(200);
 });
 
+// TAREA 12 JMRL - L05
+app.get(BASE_API + "/accident-rate-2023-stats", (req, res) => {
+    let dataJMRLFilter = dataJMRL;
+    let {province, creation_year, id, portalId, postal_code} = req.query
+    if (province!==undefined){
+        dataJMRLFilter=dataJMRLFilter.filter(stat=>stat.province.toLowerCase() === province.toLowerCase())
+    }if (creation_year!==undefined){
+        dataJMRLFilter=dataJMRLFilter.filter(stat=>stat.creation_year === Number(creation_year))
+    }if (id!==undefined){
+        dataJMRLFilter=dataJMRLFilter.filter(stat=>stat.id === Number(id))
+    }if (portalId!==undefined){
+        dataJMRLFilter=dataJMRLFilter.filter(stat=>stat.portalId=== Number(portalId))
+    }if (ine_code!==undefined){
+        dataJMRLFilter=dataJMRLFilter.filter(stat=>stat.ine_code=== Number(ine_code))
+    }if (postal_code!==undefined){
+        dataJMRLFilter=dataJMRLFilter.filter(stat=>stat.postal_code>= Number(postal_code))
+    }
+
+    res.send(JSON.stringify(dataJMRLFilter,null,2));
+    res.send(console.log(Array.isArray(siniestralidadData2023))); // Comprueba si es de verdad un array
+    (console.log(typeof(siniestralidadData2023))); 
+});
+
+
 // TAREA 13 JMRL - L05
 let initialData = [];
 app.get(BASE_API + recurso + "/loadInitialData", (request, response) =>  {
@@ -66,7 +90,7 @@ app.get(BASE_API + recurso + "/loadInitialData", (request, response) =>  {
 });
  
 // TAREA 14 JMRL - L05
-// PETICION  DELETE A RECURSO "/ministry-of-justice-in-zaragoza"
+// PETICION DELETE A RECURSO "/ministry-of-justice-in-zaragoza"
 app.delete(BASE_API + recurso, (request, response) => {
     dataJMRL = [];
     console.log("Todos los datos han sido eliminados.");
