@@ -52,28 +52,25 @@ app.get(BASE_API + recurso, (request, response) => {
 });
 
 // TAREA 12 JMRL - L05
-app.get(BASE_API + "/accident-rate-2023-stats", (req, res) => {
+app.get(BASE_API + "/accident-rate-2023-stats", (request, response) => {
     let dataJMRLFilter = dataJMRL;
-    let {province, creation_year, id, portalId, postal_code} = req.query
+    let {province, creation_year, id, portalId, postal_code, latitude, 
+            lenght, title, equipment_type, public_titularity, street_address, geometry} = request.query;
+
     if (province!==undefined){
-        dataJMRLFilter=dataJMRLFilter.filter(stat=>stat.province.toLowerCase() === province.toLowerCase())
+        dataJMRLFilter=dataJMRLFilter.filter(stat => stat.province.toLowerCase() === province.toLowerCase());
     }if (creation_year!==undefined){
-        dataJMRLFilter=dataJMRLFilter.filter(stat=>stat.creation_year === Number(creation_year))
-    }if (id!==undefined){
-        dataJMRLFilter=dataJMRLFilter.filter(stat=>stat.id === Number(id))
+        dataJMRLFilter=dataJMRLFilter.filter(stat => stat.creation_year === Number(creation_year));
     }if (portalId!==undefined){
-        dataJMRLFilter=dataJMRLFilter.filter(stat=>stat.portalId=== Number(portalId))
-    }if (ine_code!==undefined){
-        dataJMRLFilter=dataJMRLFilter.filter(stat=>stat.ine_code=== Number(ine_code))
+        dataJMRLFilter=dataJMRLFilter.filter(stat => stat.portalId=== Number(portalId));
     }if (postal_code!==undefined){
-        dataJMRLFilter=dataJMRLFilter.filter(stat=>stat.postal_code>= Number(postal_code))
+        dataJMRLFilter=dataJMRLFilter.filter(stat => stat.postal_code>= Number(postal_code));
     }
 
-    res.send(JSON.stringify(dataJMRLFilter,null,2));
-    res.send(console.log(Array.isArray(siniestralidadData2023))); // Comprueba si es de verdad un array
-    (console.log(typeof(siniestralidadData2023))); 
+    response.send(dataJMRLFilter);
+    response.send(console.log(Array.isArray(dataJMRL))); // Comprueba si es de verdad un array
+    (console.log(typeof(dataJMRL))); 
 });
-
 
 // TAREA 13 JMRL - L05
 let initialData = [];
