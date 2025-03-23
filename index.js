@@ -46,13 +46,6 @@ app.get("/samples/JMRL", (request, response) => {
 
 // TAREA 11 JMRL - L05
 app.get(BASE_API + recurso, (request, response) => {
-    console.log("New GET to /ministry-of-justice-in-zaragoza");
-    response.send(JSON.stringify(dataJMRL));
-    response.sendStatus(200);
-});
-
-// TAREA 12 JMRL - L05
-app.get(BASE_API + recurso, (request, response) => {
     let dataJMRLFilter = dataJMRL;
     let {province, creation_year, id, portalId, postal_code, latitude, 
             lenght, title, equipment_type, public_titularity, street_address, geometry} = request.query;
@@ -100,7 +93,7 @@ app.post(BASE_API + recurso,(request, response) => {
     console.log(`<${request.body}>`);
 
     let newMinistery = request.body;
-    contacts.push(newMinistery);
+    dataJMRL.push(newMinistery);
     response.sendStatus(201);
 });
 
@@ -146,7 +139,7 @@ app.put(BASE_API + recurso +"/:id", (request, response) => {
     response.sendStatus(200);
 });
 
-//DELETE DE UN DATO ESPECIFICO
+//DELETE DE UN DATO ESPECIFICO (../id)
 app.delete(BASE_API + recurso + "/:id", (request, response) => {
     let id2 = request.params.id;    
     let i = dataJMRL.findIndex(object => object.id === Number(id2));
