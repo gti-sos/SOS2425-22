@@ -66,9 +66,9 @@ app.get(BASE_API + recurso, (request, response) => {
 });
 
 // TAREA 13 JMRL - L05
-let initialData = [];
 app.get(BASE_API + recurso + "/loadInitialData", (request, response) =>  {
     console.log("New GET to /loadInitialData");
+    let initialData = [];
     if (initialData.length === 0) {
         for (let i = 0; i<10; i++){
                 initialData[i] = dataJMRL[i]
@@ -89,20 +89,20 @@ app.delete(BASE_API + recurso, (request, response) => {
 
 //PETICION POST A RECURSO "/ministry-of-justice-in-zaragoza"
 app.post(BASE_API + recurso,(request, response) => {
-    let {province, creation_year, id, portalId, postal_code, latitude, 
-        lenght, title, equipment_type, public_titularity, street_address, geometry} = req.body
+    let {province,creation_year,id,portalId,postal_code,latitude,length,title,equipment_type,public_titularity,street_address,geometry} = request.body
 
-    if (province === undefined || creation_year ===undefined || id === undefined || portalId=== undefined || 
-        postal_code === undefined || latitude === undefined || lenght === undefined || title === undefined || equipment_type === undefined
-        || public_titularity === undefined || street_address === undefined || geometry === undefined) {
-            return res.sendStatus(400);
-    } if(dataJMRL.some(row=>row.id === id)){
-        return res.sendStatus(409);
+    if (province === undefined || creation_year === undefined || id === undefined || portalId=== undefined || 
+        postal_code === undefined || latitude === undefined || length === undefined || title === undefined || 
+        equipment_type === undefined || public_titularity === undefined || street_address === undefined || geometry === undefined) {
+            return response.sendStatus(400);
+
+    } if(dataJMRL.some(row => row.id === id)){
+        return response.sendStatus(409);
     }
 
-    let newRow = req.body
+    let newRow = request.body
     dataJMRL.push(newRow)
-    res.sendStatus(201);
+    response.sendStatus(201);
 });
 
 //PETICION PUT (NO SE PUEDE HACER) A RECURSO "/ministry-of-justice-in-zaragoza"
@@ -131,18 +131,18 @@ app.post(BASE_API + recurso + "/:id", (request, response) => {
 //PETICION PUT A RECURSO "../id"
 app.put(BASE_API + recurso +"/:id", (request, response) => {
     let {province, creation_year, id, portalId, postal_code, latitude, 
-            lenght, title, equipment_type, public_titularity, street_address, geometry} = req.body;
-    let id2 = req.params.id;    
+            lenght, title, equipment_type, public_titularity, street_address, geometry} = request.body;
+    let id2 = request.params.id;    
     
     if (id !== Number(id2)) {
-        return res.sendStatus(400);
+        return response.sendStatus(400);
     }
     
     let i = dataJMRL.findIndex(object => object.id === Number(id2));
     if (i === -1) {
         return response.sendStatus(404);
     }
-    dataJMRL[i] = req.body;
+    dataJMRL[i] = request.body;
 
     response.sendStatus(200);
 });
@@ -153,14 +153,13 @@ app.delete(BASE_API + recurso + "/:id", (request, response) => {
     let i = dataJMRL.findIndex(object => object.id === Number(id2));
     
     if (i === -1) {
-        return res.sendStatus(404);
+        return response.sendStatus(404);
     }
 
     dataJMRL=dataJMRL.filter(sanction => sanction.id !== Number(id2));
-    res.sendStatus(200);
+    response.sendStatus(200);
 });
 
 app.listen(PORT, () => {
     console.log(`Server running on ${PORT}!`);
-
 });
