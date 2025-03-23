@@ -52,7 +52,7 @@ app.get(BASE_API + recurso, (request, response) => {
 });
 
 // TAREA 12 JMRL - L05
-app.get(BASE_API + "/accident-rate-2023-stats", (request, response) => {
+app.get(BASE_API + recurso, (request, response) => {
     let dataJMRLFilter = dataJMRL;
     let {province, creation_year, id, portalId, postal_code, latitude, 
             lenght, title, equipment_type, public_titularity, street_address, geometry} = request.query;
