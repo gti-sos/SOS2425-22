@@ -114,7 +114,7 @@ app.put(BASE_API + API_AMG + '/:province', (req, res) => {
     // Verificar que el 'province' en el cuerpo de la solicitud coincida con el 'province' en la URL
     if (index !== -1) {
         if (req.body.province !== province) {
-            res.sendStatus(400);
+            res.sendStatus(405);
         }
         datos_AMG[index] = req.body;
         res.sendStatus(200);
