@@ -46,7 +46,7 @@ app.get(BASE_API + API_AMG + "/loadInitialData", (request,response) =>{
         db_AMG = datos_AMG;
     }
     response.send(JSON.stringify(db_AMG));
-    response.sendStatus(200, "Ok");
+
 });
 
 // Obtener todos los datos
@@ -139,13 +139,6 @@ app.delete(BASE_API + API_AMG + '/:province', (req, res) => {
         // Si no se encuentra el recurso, devolver un 404
         res.sendStatus(404); // Not Found
     }
-});
-
-app.delete(BASE_API + API_AMG, (req, res) => {
-    // Si se accede a la URL general, vaciar la lista
-    db_AMG = [];
-
-    res.sendStatus(200); // OK
 });
 
 
