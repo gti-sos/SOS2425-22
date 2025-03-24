@@ -1,81 +1,13 @@
-let datos_AMG = [{
-    year:2023,
-    province:"Albacete",
-    missing_men:95,
-    missing_women:78,
-    missing_unknown:0,
-    total_population:368464
-},{
-    year:2023,
-    province:"Alicante",
-    missing_men:459,
-    missing_women:331,
-    missing_unknown:0,
-    total_population:1881762
-},{
-    year:2023,
-    province:"Almeria",
-    missing_men:164,
-    missing_women:97,
-    missing_unknown:0,
-    total_population:731792
-},{
-    year:2023,
-    province:"Araba",
-    missing_men:35,
-    missing_women:29,
-    missing_unknown:0,
-    total_population:333626
-},{
-    year:2023,
-    province:"Asturias",
-    missing_men:251,
-    missing_women:353,
-    missing_unknown:0,
-    total_population:1011792
-},{
-    year:2023,
-    province:"Avila",
-    missing_men:36,
-    missing_women:22,
-    missing_unknown:0,
-    total_population:158421
-},{
-    year:2023,
-    province:"Badajoz",
-    missing_men:47,
-    missing_women:73,
-    missing_unknown:0,
-    total_population:669943
-},{
-    year:2023,
-    province:"Balears",
-    missing_men:485,
-    missing_women:345,
-    missing_unknown:0,
-    total_population:1173008
-},{
-    year:2023,
-    province:"Barcelona",
-    missing_men:1462,
-    missing_women:993,
-    missing_unknown:0,
-    total_population:5714730
-},{
-    year:2023,
-    province:"Bizkaia",
-    missing_men:91,
-    missing_women:89,
-    missing_unknown:0,
-    total_population:1154334
-},{
-    year:2023,
-    province:"Burgos",
-    missing_men:66,
-    missing_women:38,
-    missing_unknown:0,
-    total_population:356055
-}];
+let datos_AMG = [{'year': 2017, 'province': 'Albacete', 'missing_men': 89, 'missing_women': 79, 'missing_unknown': 0, 'total_population': 390032},
+    {'year': 2017, 'province': 'Alicante', 'missing_men': 514, 'missing_women': 352, 'missing_unknown': 0, 'total_population': 1825332},
+    {'year': 2017, 'province': 'Almería', 'missing_men': 370, 'missing_women': 137, 'missing_unknown': 0, 'total_population': 706672},
+    {'year': 2017, 'province': 'Araba', 'missing_men': 29, 'missing_women': 12, 'missing_unknown': 0, 'total_population': 326574},
+    {'year': 2017, 'province': 'Asturias', 'missing_men': 216, 'missing_women': 222, 'missing_unknown': 0, 'total_population': 1034960},
+    {'year': 2017, 'province': 'Ávila', 'missing_men': 30, 'missing_women': 34, 'missing_unknown': 0, 'total_population': 16070},
+    {'year': 2017, 'province': 'Badajoz', 'missing_men': 55, 'missing_women': 48, 'missing_unknown': 0, 'total_population': 679884},
+    {'year': 2017, 'province': 'Balears (Illes)', 'missing_men': 517, 'missing_women': 502, 'missing_unknown': 2, 'total_population': 1115999},
+    {'year': 2017, 'province': 'Barcelona', 'missing_men': 1688, 'missing_women': 1276, 'missing_unknown': 0, 'total_population': 5576037},
+    {'year': 2017, 'province': 'Bizkaia', 'missing_men': 104, 'missing_women': 94, 'missing_unknown': 0, 'total_population': 1148302}];
 
 function mediaMissingMen(dat){
     let ac = 0;

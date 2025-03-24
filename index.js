@@ -33,8 +33,26 @@ app.get("/samples/AMG", (request,response) => {
     response.send(`La media de hombres desaparecidos en provincias que empiezan por la A es ${resAMG}`);
 });
 
+//API AMG
+const API_AMG = "/people-missed-in-spain";
+db_AMG = [];
+
+app.get(BASE_API + API_AMG, (request,response) => {
+    response.send(JSON.stringify(db_AMG));
+});
+
+app.get(BASE_API + API_AMG + "/loadInitialData", (request,response) =>{
+    if(db_AMG.length()<0){
+        db_AMG = datos_AMG;
+    }
+    response.send(JSON.stringify(db_AMG));
+
+});
+
+
 // TAREA L04 JMRL
 import { averageLatitude2, csvContent } from "./index-JMRL.js"
+import { stringify } from 'querystring';
 let resJMRL = averageLatitude2();
 let dataJMRL = csvContent;
 const recurso = "/ministry-of-justice-in-zaragoza";
