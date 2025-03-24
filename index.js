@@ -46,7 +46,7 @@ app.get(BASE_API + API_AMG + "/loadInitialData", (request,response) =>{
         db_AMG = datos_AMG;
     }
     response.send(JSON.stringify(db_AMG));
-
+    response.sendStatus(200, "Ok");
 });
 
 // Obtener todos los datos
