@@ -141,6 +141,16 @@ app.delete(BASE_API + API_AMG + '/:province', (req, res) => {
     }
 });
 
+app.delete(BASE_API + API_AMG, (req, res) => {
+    // Verificar que datos_AMG no sea undefined y sea un arreglo antes de vaciarlo
+    if (Array.isArray(datos_AMG)) {
+        datos_AMG.length = 0;  // Vaciar el arreglo sin perder la referencia
+        res.sendStatus(200); // OK
+    } else {
+        res.sendStatus(500); // Internal Server Error si algo va mal con la lista
+    }
+});
+
 
 
 // TAREA L04 JMRL
