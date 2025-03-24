@@ -37,18 +37,24 @@ app.get("/samples/AMG", (request,response) => {
 const API_AMG = "/people-missed-in-spain";
 db_AMG = [];
 
+app.get(BASE_API + API_AMG + "/loadInitialData", (request,response) =>{
+    if(db_AMG.length === 0){
+        let data = datos_AMG;
+        for (let i = 0; i < data.length; i++){
+            db_AMG.push(data[i]);
+        }
+        response.sendStatus(201, "Data Created");
+    }else{
+        response.send(JSON.stringify(db_AMG));
+        response.sendStatus(200, "Ok");
+    }
+    
+});
+
 app.get(BASE_API + API_AMG, (request,response) => {
     response.send(JSON.stringify(db_AMG));
+    response.sendStatus(200, "Ok");
 });
-
-app.get(BASE_API + API_AMG + "/loadInitialData", (request,response) =>{
-    if(db_AMG.length()<0){
-        db_AMG = datos_AMG;
-    }
-    response.send(JSON.stringify(db_AMG));
-
-});
-
 
 // TAREA L04 JMRL
 import { averageLatitude2, csvContent } from "./index-JMRL.js"
