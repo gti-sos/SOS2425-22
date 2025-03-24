@@ -21,4 +21,6 @@ function mediaMissingMen(dat){
 
 console.log(mediaMissingMen(datos_AMG));
 
+
+
 export {datos_AMG};
