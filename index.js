@@ -1,132 +1,16 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-
 import { request } from 'http';
 import express, { response } from "express";
 const app = express();
-const cool = require("cool-ascii-faces")
 const PORT = process.env.PORT || 16078;
 const BASE_API = "/api/v1";
+import { loadBackendAMG } from './src/backend/index-AMG.js';
 
 app.use(express.json());
 app.use("/about", express.static("./public"));
 
-app.get("/cool", (request,response) => {
-    response.send(cool());
-});
-
-import { datos_AMG } from "./index-AMG.js";
-const dat_AMG = datos_AMG;
-const resAMG = mediaMissingMenAMG(dat_AMG);
-
-function mediaMissingMenAMG(dat_AMG){
-    let ac = 0;
-    let lista = dat_AMG;
-    lista.filter(n=>n.province.startsWith("A")) 
-    .forEach(n => {
-        ac = ac + n.missing_men;
-    });
-    return ac/lista.length; 
-};
-
-app.get("/samples/AMG", (request,response) => {
-    response.send(`La media de hombres desaparecidos en provincias que empiezan por la A es ${resAMG}`);
-});
-
-const API_AMG = "/missing-people-stats";  
-let db_AMG = [];
-
-app.get(BASE_API + API_AMG, (request,response) => {
-    response.send(JSON.stringify(db_AMG));
-});
-
-app.get(BASE_API + API_AMG + "/loadInitialData", (request,response) =>{
-    if(db_AMG.length === 0){
-        db_AMG = datos_AMG;
-    }
-    response.send(JSON.stringify(db_AMG));
-
-});
-
-// Obtener datos por provincia
-app.get(BASE_API + API_AMG + '/:province', (req, res) => {
-    const province = req.params.province;
-    const result = db_AMG.find(entry => entry.province === province);
-    result ? res.send(result) : res.sendStatus(404);
-});
-
-// Agregar un nuevo registro
-app.post(BASE_API + API_AMG, (req, res) => {
-    const newEntry = req.body;
-
-    // Verificar que los datos obligatorios estén presentes
-    if (!newEntry || !newEntry.year || !newEntry.province || !newEntry.total_population) {
-        return res.sendStatus(400); // Bad Request si faltan datos obligatorios
-    }
-
-    // Verificar si ya existe un recurso con el mismo 'province'
-    const exists = db_AMG.some(entry => entry.province === newEntry.province);
-    if (exists) {
-        return res.sendStatus(409); // Conflict si ya existe el recurso
-    }
-
-    // Agregar el nuevo recurso
-    db_AMG.push(newEntry);
-    res.sendStatus(201); // Created
-});
-
-app.post(BASE_API + API_AMG + "/:province", (req, res) => {
-    res.sendStatus(405);
-});
-
-
-// Actualizar un registro existente
-app.put(BASE_API + API_AMG + '/:province', (req, res) => {
-    const province = req.params.province;
-    const index = db_AMG.findIndex(entry => entry.province === province);
-
-    // Verificar que el 'province' en el cuerpo de la solicitud coincida con el 'province' en la URL
-    if (index !== -1) {
-        if (req.body.province !== province) {
-            res.sendStatus(400);
-        }
-        db_AMG[index] = req.body;
-        res.sendStatus(200);
-    } else {
-        res.sendStatus(404);
-    }
-});
-
-app.put(BASE_API + API_AMG, (req, res) => {
-    res.sendStatus(405);
-});
-
-// Eliminar un registro
-app.delete(BASE_API + API_AMG + '/:province', (req, res) => {
-    const province = req.params.province;
-
-    // Buscar el índice del recurso a eliminar
-    const index = db_AMG.findIndex(entry => entry.province === province);
-
-    if (index !== -1) {
-        // Si se encuentra el recurso, eliminarlo
-        db_AMG.splice(index, 1);
-        res.sendStatus(200); // OK
-    } else {
-        // Si no se encuentra el recurso, devolver un 404
-        res.sendStatus(404); // Not Found
-    }
-});
-
-app.delete(BASE_API + API_AMG, (req, res) => {
-    // Verificar que db_AMG no sea undefined y sea un arreglo antes de vaciarlo
-    if (Array.isArray(db_AMG)) {
-        db_AMG.length = 0;  // Vaciar el arreglo sin perder la referencia
-        res.sendStatus(200); // OK
-    } else {
-        res.sendStatus(500); // Internal Server Error si algo va mal con la lista
-    }
-});
+loadBackendAMG(app);
 
 
 
