@@ -253,6 +253,10 @@ function loadBackendAMG(app){
             }
         });
     });
+
+    app.get(BASE_API + "/docs",(req,res) => {
+        res.redirect("url postman");
+    });
 };
 
 export {loadBackendAMG};
