@@ -1,0 +1,15 @@
+{
+	"id": "8350ee31-fa84-4701-bb4f-f310ca411a53",
+	"name": "online",
+	"values": [
+		{
+			"key": "base_url",
+			"value": "https://sos2425-22.onrender.com/api/v1/ministry-of-justice-in-zaragoza",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2025-04-06T17:11:22.385Z",
+	"_postman_exported_using": "Postman/11.39.5-250403-2338"
+}

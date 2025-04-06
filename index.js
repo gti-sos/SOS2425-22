@@ -5,20 +5,26 @@ import express, { response } from "express";
 const app = express();
 const PORT = process.env.PORT || 16078;
 const BASE_API = "/api/v1";
+
 import { loadBackendAMG } from './src/backend/index-AMG.js';
+import { loadBackendJMRL } from './src/backend/index-JMRL.js';
 
 app.use(express.json());
 app.use("/about", express.static("./public"));
 
 loadBackendAMG(app);
+
 app.get("/api/v1/missing-people-stats/docs",(req,res) => {
     res.redirect("https://documenter.getpostman.com/view/33043526/2sB2cUBP8d");
 });
 
+loadBackendJMRL(app);
 
 
+/*
 import { averageLatitude2, csvContent } from "./index-JMRL.js"
 import { stringify } from 'querystring';
+import { loadBackendJMRL } from './src/backend/index-JMRL.js';
 let resJMRL = averageLatitude2();
 let dataJMRL = csvContent;
 const recurso = "/ministry-of-justice-in-zaragoza";
@@ -143,6 +149,7 @@ app.delete(BASE_API + recurso + "/:id", (request, response) => {
     dataJMRL=dataJMRL.filter(sanction => sanction.id !== Number(id2));
     response.sendStatus(200);
 });
+*/
 
 app.listen(PORT, () => {
     console.log(`Server running on ${PORT}!`);
