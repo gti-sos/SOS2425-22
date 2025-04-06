@@ -11,7 +11,7 @@ import dataStore from "nedb";
 import { basename } from 'path';
 
 //LEEMOS EL CSV
-let fileContent = readFileSync('input-JMRL.csv', 'utf-8');
+let fileContent = readFileSync('src/backend/input-JMRL.csv', 'utf-8');
 //PARSEAMOS EL CONTENIDO DEL CSV A UNA LISTA DE OBJETOS
 let csvContent = parse(fileContent, {
     columns: true,
@@ -99,7 +99,7 @@ function loadBackendJMRL(app) {
         if (from || to) {
             query.id = {};
             if (from) query.id.$gte = Number(from);
-            if (to) query.creation_year.$lte = Number(to);
+            if (to) query.id.$lte = Number(to);
         }
 
         let d = db.find(query);
@@ -164,7 +164,7 @@ function loadBackendJMRL(app) {
     });
 
     //GET A DATO ESPECIFICO
-    app.get(BASE_API, + recurso + "/:id", (request, response) => {
+    app.get(BASE_API + recurso + "/:id", (request, response) => {
         let parametroId = Number(request.params.id);
         db.findOne({ id: parametroId }, (err, data) => {
             if (err) {
@@ -239,7 +239,7 @@ function loadBackendJMRL(app) {
         });
     });
 
-}
+};
 
 //EXPORTAMOS LAS DISTINTAS FUNCIONES
 export { loadBackendJMRL, csvContent, loadInitialDataJMRL }
