@@ -32,8 +32,8 @@ const db = new dataStore();
 
 // FUNCION loadInitialData()
 function loadInitialDataJMRL(){
-    let csvContent = csvContent.slice(0, 10);
-    return csvContent;
+    let datos = csvContent.slice(0, 10);
+    return datos;
 }
 
 db.insert(csvContent, (err, newDocs) => {
@@ -46,7 +46,7 @@ function loadBackendJMRL(app) {
     // API JMRL
     app.get(BASE_API + recurso + "/docs", (request, response) => {
         response.redirect("URL a POSTMAN");
-    })
+    });
 
     // loadInitialData()
     app.get(BASE_API + recurso + "/loadInitialData", (request, response) => {
@@ -59,7 +59,7 @@ function loadBackendJMRL(app) {
                 return response.status(400).json({message: "Ya hay datos"});
             }
 
-            let initialData = loadInitialData();
+            let initialData = loadInitialDataJMRL();
             // INSERTAMOS DATOS
             db.insert(initialData, (err, newDocs) => {
                 if(err) {
@@ -109,7 +109,7 @@ function loadBackendJMRL(app) {
             d = d.skip(Number(offset));
         }
         if (limit !== undefined) {
-            d = d.limit(Numer(limit));
+            d = d.limit(Number(limit));
         }
 
         d.exec((err, data) => {
@@ -196,33 +196,33 @@ function loadBackendJMRL(app) {
     });
 
     //FALLO DE POST A UN DATO ESPECIFICO
-    app.post(BASE_API + recurso + ":/id", (request, response) => {
-        res.sendStatus(405);
+    app.post(BASE_API + recurso + "/:id", (request, response) => {
+        response.sendStatus(405);
     });
 
     //PUT A UN DATO ESPECIFICO
-    app.put(BASE_API + recurso + ":id", (request, response) => {
+    app.put(BASE_API + recurso + "/:id", (request, response) => {
         let parametroId = Number(request.params.id);
-        let datoAct = request.body;
+        let datoAct = request.body.id;
 
         //VERIFICAMOS QUE COINCIDAN LOS IDs
         if (datoAct !== parametroId) {
-            return res.sendStatus(400);
+            return response.sendStatus(400);
         }
 
-        db.update({ id: parametroId }, datoAct, {}, (err, reemplazo) => {
+        db.update({ id: parametroId }, request.body, {}, (err, reemplazo) => {
             if (err) {
                 return response.status(500).send("Error al actualizar el dato");
             }
             if (reemplazo === 0) {
-                return res.sendStatus(404);
+                return response.sendStatus(404);
             }
-            res.sendStatus(200);
+            response.sendStatus(200);
         });
     });
 
     //DELETE DE UN DATO ESPECIFICO
-    app.delete(BASE_API + recurso + ":/id", (request, response) => {
+    app.delete(BASE_API + recurso + "/:id", (request, response) => {
         let parametroId = Number(request.params.id);
 
         db.remove({ id: parametroId }, {}, (err, datoElim) => {
@@ -231,9 +231,9 @@ function loadBackendJMRL(app) {
                 console.error(`ERROR: ${err}`);
             } else {
                 if (datoElim === 0) {
-                    res.sendStatus(404);
+                    response.sendStatus(404);
                 } else {
-                    res.sendStatus(200);
+                    response.sendStatus(200);
                 }
             }
         });
