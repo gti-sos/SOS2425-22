@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
+    "test-JMRL":"npx newman run tests/backend/api-JMRL/api-tests-JMRL.json -e tests/backend/api-JMRL/api-env-local.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
