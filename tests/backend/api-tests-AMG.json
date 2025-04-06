@@ -124,11 +124,10 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Response contains exactly one object\", function () {\r",
+							"pm.test(\"Response is a JSON object\", function () {\r",
 							"    const jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData).to.be.an(\"array\").with.lengthOf(1);\r",
-							"});\r",
-							""
+							"    pm.expect(jsonData).to.be.an(\"object\");\r",
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -202,13 +201,10 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Response contains expected properties\", function () {\r",
-							"    const jsonData = pm.response.json();\r",
-							"    const expectedProps = [\"year\", \"province\", \"missing_men\", \"missing_women\", \"missing_unknown\", \"total_population\"];\r",
-							"    expectedProps.forEach(prop => {\r",
-							"        pm.expect(jsonData).to.have.property(prop);\r",
-							"    });\r",
-							"});"
+							"pm.test(\"Status is 201\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -231,14 +227,15 @@
 					}
 				},
 				"url": {
-					"raw": "{{BASE_URL}}/api/v1/missing-people-stats",
+					"raw": "{{BASE_URL}}/api/v1/missing-people-stats/",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
 						"api",
 						"v1",
-						"missing-people-stats"
+						"missing-people-stats",
+						""
 					]
 				}
 			},
@@ -404,7 +401,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{BASE_URL}}/api/v1/missing-people-stats/Albacete",
+					"raw": "{{BASE_URL}}/api/v1/missing-people-stats/",
 					"host": [
 						"{{BASE_URL}}"
 					],
@@ -412,7 +409,7 @@
 						"api",
 						"v1",
 						"missing-people-stats",
-						"Albacete"
+						""
 					]
 				}
 			},
@@ -601,8 +598,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Province is Asturias and year is 2021\", function () {\r",

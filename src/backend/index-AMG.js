@@ -26,7 +26,7 @@ function loadBackendAMG(app){
                     db.insert(initialData);
                     res.sendStatus(201, "Data Created");
                 }else{
-                    res.send(JSON.stringify(data.map((s) => {
+                    res.send(JSON.stringify(stats.map((s) => {
                         delete s._id;
                         return s;
                     })));
@@ -73,7 +73,7 @@ function loadBackendAMG(app){
         let stat = req.body;
         let object_params = ["year","province","missing_men","missing_women","missing_unknown","total_population"];
         
-        const queryParams = Object.keys(report);
+        const queryParams = Object.keys(stat);
         const missingFields = object_params.filter(field => !queryParams.includes(field));
         
         if (missingFields.length > 0) {
@@ -89,7 +89,7 @@ function loadBackendAMG(app){
                         res.sendStatus(409, "Conflict");
                     } else {
                         db.insert(stat);
-                        res.sendStatus(201, "Data Created");
+                        res.status(201).json(stat);
                     }
                 }
             })
@@ -245,7 +245,7 @@ function loadBackendAMG(app){
 
         const province = req.params.province;
         const year = parseInt(req.params.year);
-        db.remove({ "province": province }, {"year": year}, (err, numRemoved) => {
+        db.remove({"year": year, "province": province}, {}, (err, numRemoved) => {
             if (err) {
                 res.sendStatus(500, "Internal Server Error");
             } else {
