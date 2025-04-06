@@ -11,6 +11,9 @@ app.use(express.json());
 app.use("/about", express.static("./public"));
 
 loadBackendAMG(app);
+app.get("/api/v1/missing-people-stats/docs",(req,res) => {
+    res.redirect("https://documenter.getpostman.com/view/33043526/2sB2cUBP8d");
+});
 
 
 

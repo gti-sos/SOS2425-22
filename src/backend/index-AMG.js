@@ -8,6 +8,10 @@ let initialData= datos_AMG;
 
 function loadBackendAMG(app){
 
+    app.get(BASE_API + "/docs",(req,res) => {
+        res.redirect("https://documenter.getpostman.com/view/33043526/2sB2cUBP8d");
+    });
+
     app.get(BASE_API + "/loadInitialData", (req,res) =>{
 
         //Paginación
@@ -252,10 +256,6 @@ function loadBackendAMG(app){
                 }
             }
         });
-    });
-
-    app.get(BASE_API + "/docs",(req,res) => {
-        res.redirect("url postman");
     });
 };
 
