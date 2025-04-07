@@ -9,6 +9,21 @@
 	"item": [
 		{
 			"name": "GET - cargar datos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -23,6 +38,25 @@
 		},
 		{
 			"name": "GET - dato específico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"// Check if the response body is an object\r",
+							"pm.test(\"Response body is an object\", function () {\r",
+							"    pm.expect(pm.response.json()).to.be.an('object');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -40,6 +74,29 @@
 		},
 		{
 			"name": "GET - cargar filtro (creation_year)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"// Check if the response is an array\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"// Check if the array contains at least 1 object\r",
+							"pm.test(\"Array contains at least 1 object\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.lengthOf.at.least(1);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -60,6 +117,29 @@
 		},
 		{
 			"name": "GET - cargar filtro (id)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"// Check if the response is an array\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"// Check if the array contains at least 1 object\r",
+							"pm.test(\"Array contains at least 1 object\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.lengthOf.at.least(1);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -80,6 +160,29 @@
 		},
 		{
 			"name": "GET - cargar filtro (portalId)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"// Check if the response is an array\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"// Check if the array contains at least 1 object\r",
+							"pm.test(\"Array contains at least 1 object\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.lengthOf.at.least(1);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -100,6 +203,29 @@
 		},
 		{
 			"name": "GET - cargar filtro (postal_code)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"// Check if the response is an array\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"// Check if the array contains at least 1 object\r",
+							"pm.test(\"Array contains at least 1 object\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.lengthOf.at.least(1);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -120,6 +246,29 @@
 		},
 		{
 			"name": "GET - cargar filtro con rango",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"// Check if the response is an array\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"// Check if the array contains at least 1 object\r",
+							"pm.test(\"Array contains at least 1 object\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.lengthOf.at.least(1);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -144,6 +293,21 @@
 		},
 		{
 			"name": "POST - carga de dato",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -167,6 +331,21 @@
 		},
 		{
 			"name": "POST - error conflicto (409)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -190,6 +369,21 @@
 		},
 		{
 			"name": "POST - error falta de campos (400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -213,6 +407,21 @@
 		},
 		{
 			"name": "PUT - actualizar dato especifico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -239,6 +448,21 @@
 		},
 		{
 			"name": "DELETE - borrado de un dato especifico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -256,6 +480,20 @@
 		},
 		{
 			"name": "DELETE - borrado de todos los datos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -270,6 +508,25 @@
 		},
 		{
 			"name": "GET - loadInitialData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Array contains 10 objects\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.lengthOf(10);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -287,6 +544,21 @@
 		},
 		{
 			"name": "PUT - error actualizar todos los archivos (405)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -301,6 +573,21 @@
 		},
 		{
 			"name": "POST - error carga dato especifico (405)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -318,6 +605,21 @@
 		},
 		{
 			"name": "PUT - error distinto identificador (400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -344,6 +646,21 @@
 		},
 		{
 			"name": "PUT - fallo recurso no existe (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -370,6 +687,21 @@
 		},
 		{
 			"name": "POST - volver al estado inicial",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
