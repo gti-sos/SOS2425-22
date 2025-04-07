@@ -44,7 +44,7 @@ db.insert(csvContent, (err, newDocs) => {
 
 function loadBackendJMRL(app) {
     // API JMRL
-    app.get(BASE_API + "/JMRL/docs", (request, response) => {
+    app.get(BASE_API + "/ministry-of-justice-in-zaragoza/docs", (request, response) => {
         response.redirect("https://documenter.getpostman.com/view/42360434/2sB2cUC3wh");
     });
 
