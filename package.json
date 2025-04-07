@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "test": "npm run test-local-AMG; npm run test-JMRL",
+    "test": "npm run test-local-AMG && npm run test-JMRL",
     "test-api-local-AMG": "npx newman run tests/backend/api-tests-AMG.json -e tests/backend/api-env-local.json",
     "test-local-AMG":"start-server-and-test start http://localhost:16078 test-api-local-AMG",
     "test-api-server-AMG": "npx newman run tests/backend/api-tests-AMG.json -e tests/backend/api-env-online.json",
