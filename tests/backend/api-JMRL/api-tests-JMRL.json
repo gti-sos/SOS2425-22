@@ -8,14 +8,14 @@
 	},
 	"item": [
 		{
-			"name": "GET - cargar datos",
+			"name": "POST - carga de dato",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
 							"});\r",
 							""
 						],
@@ -25,8 +25,17 @@
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"province\":\"Sevilla\",\r\n\"creation_year\":2025,\r\n\"id\":2025,\r\n\"portalId\":2025,\r\n\"postal_code\":41020,\r\n\"latitude\":41.66893233,\r\n\"length\":-0.8967708469,\r\n\"title\":\"SOS2425-22\",\r\n\"equipment_type\":\"prueba\",\r\n\"public_titularity\":\"TRUE\",\r\n\"street_address\":\"Avda. Reina Mercedes\",\r\n\"geometry\":\"675089.0192155159 4615156.222776663\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "{{base_url}}",
 					"host": [
@@ -61,12 +70,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/9020",
+					"raw": "{{base_url}}/2025",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"9020"
+						"2025"
 					]
 				}
 			},
@@ -101,14 +110,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}?creation_year=2012",
+					"raw": "{{base_url}}?creation_year=2025",
 					"host": [
 						"{{base_url}}"
 					],
 					"query": [
 						{
 							"key": "creation_year",
-							"value": "2012"
+							"value": "2025"
 						}
 					]
 				}
@@ -144,14 +153,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}?id=9020",
+					"raw": "{{base_url}}?id=2025",
 					"host": [
 						"{{base_url}}"
 					],
 					"query": [
 						{
 							"key": "id",
-							"value": "9020"
+							"value": "2025"
 						}
 					]
 				}
@@ -187,14 +196,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}?portalId=14284",
+					"raw": "{{base_url}}?portalId=2025",
 					"host": [
 						"{{base_url}}"
 					],
 					"query": [
 						{
 							"key": "portalId",
-							"value": "14284"
+							"value": "2025"
 						}
 					]
 				}
@@ -230,14 +239,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}?postal_code=50003",
+					"raw": "{{base_url}}?postal_code=41020",
 					"host": [
 						"{{base_url}}"
 					],
 					"query": [
 						{
 							"key": "postal_code",
-							"value": "50003"
+							"value": "41020"
 						}
 					]
 				}
@@ -273,57 +282,19 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}?from=9000&to=9050",
+					"raw": "{{base_url}}?from=2000&to=9050",
 					"host": [
 						"{{base_url}}"
 					],
 					"query": [
 						{
 							"key": "from",
-							"value": "9000"
+							"value": "2000"
 						},
 						{
 							"key": "to",
 							"value": "9050"
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST - carga de dato",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 201\", function () {\r",
-							"    pm.response.to.have.status(201);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"province\":\"Sevilla\",\r\n\"creation_year\":2025,\r\n\"id\":2025,\r\n\"portalId\":2025,\r\n\"postal_code\":41020,\r\n\"latitude\":41.66893233,\r\n\"length\":-0.8967708469,\r\n\"title\":\"SOS2425-22\",\r\n\"equipment_type\":\"prueba\",\r\n\"public_titularity\":\"TRUE\",\r\n\"street_address\":\"Avda. Reina Mercedes\",\r\n\"geometry\":\"675089.0192155159 4615156.222776663\"}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}",
-					"host": [
-						"{{base_url}}"
 					]
 				}
 			},
@@ -479,70 +450,6 @@
 			"response": []
 		},
 		{
-			"name": "DELETE - borrado de todos los datos",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}",
-					"host": [
-						"{{base_url}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET - loadInitialData",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Array contains 10 objects\", function () {\r",
-							"    pm.expect(pm.response.json()).to.have.lengthOf(10);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/loadInitialData",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"loadInitialData"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "PUT - error actualizar todos los archivos (405)",
 			"event": [
 				{
@@ -680,38 +587,6 @@
 					],
 					"path": [
 						"41020"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST - volver al estado inicial",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/reset",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"reset"
 					]
 				}
 			},
