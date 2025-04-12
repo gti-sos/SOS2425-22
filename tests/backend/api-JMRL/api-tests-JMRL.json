@@ -29,7 +29,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"province\":\"Sevilla\",\r\n\"creation_year\":2025,\r\n\"id\":2025,\r\n\"portalId\":2025,\r\n\"postal_code\":41020,\r\n\"latitude\":41.66893233,\r\n\"length\":-0.8967708469,\r\n\"title\":\"SOS2425-22\",\r\n\"equipment_type\":\"prueba\",\r\n\"public_titularity\":\"TRUE\",\r\n\"street_address\":\"Avda. Reina Mercedes\",\r\n\"geometry\":\"675089.0192155159 4615156.222776663\"}",
+					"raw": "{\"province\":\"Sevilla\",\r\n\"creation_year\":2025,\r\n\"id\":2025,\r\n\"portalId\":2025,\r\n\"postal_code\":41020,\r\n\"latitude\":41.66893233,\r\n\"length\":-0.8967708469,\r\n\"title\":\"SOS2425-22\",\r\n\"equipment_type\":\"prueba\",\r\n\"public_titularity\":\"TRUE\",\r\n\"street_address\":\"Avda. Reina Mercedes\",\r\n\"year\":2025,\r\n\"num_workers\": 2025}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -70,11 +70,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/2025",
+					"raw": "{{base_url}}/Sevilla/2025/2025",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"Sevilla",
+						"2025",
 						"2025"
 					]
 				}
@@ -322,7 +324,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"province\":\"Sevilla\",\r\n\"creation_year\":2025,\r\n\"id\":2025,\r\n\"portalId\":2025,\r\n\"postal_code\":41020,\r\n\"latitude\":41.66893233,\r\n\"length\":-0.8967708469,\r\n\"title\":\"SOS2425-22\",\r\n\"equipment_type\":\"prueba\",\r\n\"public_titularity\":\"TRUE\",\r\n\"street_address\":\"Avda. Reina Mercedes\",\r\n\"geometry\":\"675089.0192155159 4615156.222776663\"}",
+					"raw": "{\"province\":\"Sevilla\",\r\n\"creation_year\":2025,\r\n\"id\":2025,\r\n\"portalId\":2025,\r\n\"postal_code\":41020,\r\n\"latitude\":41.66893233,\r\n\"length\":-0.8967708469,\r\n\"title\":\"SOS2425-22\",\r\n\"equipment_type\":\"prueba\",\r\n\"public_titularity\":\"TRUE\",\r\n\"street_address\":\"Avda. Reina Mercedes\",\r\n\"year\":2025,\r\n\"num_workers\": 2025}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -398,7 +400,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"province\":\"Sevilla\",\r\n\"creation_year\":2025,\r\n\"id\":2025,\r\n\"portalId\":2026,\r\n\"postal_code\":41020,\r\n\"latitude\":41.66893233,\r\n\"length\":-0.8967708469,\r\n\"title\":\"SOS2425-22\",\r\n\"equipment_type\":\"prueba\",\r\n\"public_titularity\":\"TRUE\",\r\n\"street_address\":\"Avda. Reina Mercedes\",\r\n\"geometry\":\"675089.0192155159 4615156.222776663\"}",
+					"raw": "{\"province\":\"Sevilla\",\r\n\"creation_year\":2025,\r\n\"id\":2025,\r\n\"portalId\":2025,\r\n\"postal_code\":41020,\r\n\"latitude\":41.66893233,\r\n\"length\":-0.8967708469,\r\n\"title\":\"SOS2425-22\",\r\n\"equipment_type\":\"prueba\",\r\n\"public_titularity\":\"TRUE\",\r\n\"street_address\":\"Avda. Reina Mercedes\",\r\n\"year\":2025,\r\n\"num_workers\": 41020}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -406,11 +408,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/2025",
+					"raw": "{{base_url}}/Sevilla/2025/2025",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"Sevilla",
+						"2025",
 						"2025"
 					]
 				}
@@ -438,11 +442,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/2025",
+					"raw": "{{base_url}}/Sevilla/2025/2025",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"Sevilla",
+						"2025",
 						"2025"
 					]
 				}
@@ -499,12 +505,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/9032",
+					"raw": "{{base_url}}/Zaragoza/2012/9016",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"9032"
+						"Zaragoza",
+						"2012",
+						"9016"
 					]
 				}
 			},
@@ -532,7 +540,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"province\": \"Zaragoza\",\r\n    \"creation_year\": 2012,\r\n    \"id\": 9032,\r\n    \"portalId\": 42182,\r\n    \"postal_code\": 50018,\r\n    \"latitude\": 41.66893233,\r\n    \"length\": -0.8967708469,\r\n    \"title\": \"Juzgados de lo Penal\",\r\n    \"equipment_type\": \"justicia,otros-organismos\",\r\n    \"public_titularity\": \"TRUE\",\r\n    \"street_address\": \"Avda. José Atarés, 89-97\",\r\n    \"geometry\": \"675089.0192155159 4615156.222776663\"\r\n}",
+					"raw": "{\"province\":\"Sevilla\",\r\n\"creation_year\":2025,\r\n\"id\":2025,\r\n\"portalId\":2025,\r\n\"postal_code\":41020,\r\n\"latitude\":41.66893233,\r\n\"length\":-0.8967708469,\r\n\"title\":\"SOS2425-22\",\r\n\"equipment_type\":\"prueba\",\r\n\"public_titularity\":\"TRUE\",\r\n\"street_address\":\"Avda. Reina Mercedes\",\r\n\"year\":2025,\r\n\"num_workers\": 2025}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -540,12 +548,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/9020",
+					"raw": "{{base_url}}/Zaragoza/2012/9016",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"9020"
+						"Zaragoza",
+						"2012",
+						"9016"
 					]
 				}
 			},
@@ -573,7 +583,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"province\": \"Zaragoza\",\r\n    \"creation_year\": 2012,\r\n    \"id\": 41020,\r\n    \"portalId\": 42182,\r\n    \"postal_code\": 50018,\r\n    \"latitude\": 41.66893233,\r\n    \"length\": -0.8967708469,\r\n    \"title\": \"Juzgados de lo Penal\",\r\n    \"equipment_type\": \"justicia,otros-organismos\",\r\n    \"public_titularity\": \"TRUE\",\r\n    \"street_address\": \"Avda. José Atarés, 89-97\",\r\n    \"geometry\": \"675089.0192155159 4615156.222776663\"\r\n}",
+					"raw": "{\"province\":\"Sevilla\",\r\n\"creation_year\":2025,\r\n\"id\":2025,\r\n\"portalId\":2025,\r\n\"postal_code\":41020,\r\n\"latitude\":41.66893233,\r\n\"length\":-0.8967708469,\r\n\"title\":\"SOS2425-22\",\r\n\"equipment_type\":\"prueba\",\r\n\"public_titularity\":\"TRUE\",\r\n\"street_address\":\"Avda. Reina Mercedes\",\r\n\"year\":2025,\r\n\"num_workers\": 2025}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -581,12 +591,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/41020",
+					"raw": "{{base_url}}/Sevilla/2025/2025",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"41020"
+						"Sevilla",
+						"2025",
+						"2025"
 					]
 				}
 			},
