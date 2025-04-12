@@ -12,7 +12,8 @@
     "test-api-server-AMG": "npx newman run tests/backend/api-tests-AMG.json -e tests/backend/api-env-online.json",
     "start-server-and-test-server-AMG":"start-server-and-test start http://sos2425-22.onrender.com test-api-online-AMG",
     "test-api-JMRL": "npx newman run tests/backend/api-JMRL/api-tests-JMRL.json -e tests/backend/api-JMRL/api-env-local.json",
-    "test-JMRL": "start-server-and-test start http://localhost:16078 test-api-JMRL"
+    "test-JMRL": "start-server-and-test start http://localhost:16078 test-api-JMRL",
+    "build": "cd src/frontend; npm install; npm run build"
   },
   "author": "",
   "license": "ISC",
