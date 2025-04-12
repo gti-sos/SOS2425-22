@@ -4,7 +4,7 @@
 	"values": [
 		{
 			"key": "base_url",
-			"value": "http://localhost:16078/api/v1/ministry-of-justice-in-zaragoza",
+			"value": "http://localhost:16078/api/v2/ministry-of-justice-in-zaragoza",
 			"type": "default",
 			"enabled": true
 		}

@@ -28,7 +28,7 @@ let csvContent = parse(fileContent, {
     }
 });
 
-const BASE_API = "/api/v1";
+const BASE_API = "/api/v2";
 const recurso = "/ministry-of-justice-in-zaragoza";
 const db = new dataStore();
 
