@@ -83,9 +83,12 @@ function loadBackendJMRL(app) {
 
     // GET PARA LOS DATOS (CON PAGINACION)
     app.get(BASE_API + recurso, (request, response) => {
-        let { creation_year, id, portalId, postal_code, latitude, length, year, num_workers, from, to, limit, offset } = request.query;
+        let { province, creation_year, id, portalId, postal_code, latitude, length, year, num_workers, from, to, limit, offset } = request.query;
         let query = {};
 
+        if (province) {
+            query.province = province;
+        }
         if (creation_year) {
             query.creation_year = Number(creation_year);
         }
