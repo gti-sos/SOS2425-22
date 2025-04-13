@@ -109,6 +109,26 @@
         }
     }
 
+    async function deleteData() { 
+        resultStatus = result = "";
+        try {
+            const res = await fetch(API, {method:"DELETE"});
+
+            const status = await res.status; 
+            resultStatus = status;
+
+            if(status === 200){
+                console.log(`All data has been deleted`);
+                getMinistry();
+            }else{
+                console.log(`Error deleting all data : status received\n${status}`);
+            }
+        } catch(error){
+            console.log(`ERROR deleting data from ${API}: ${error}`);
+        }
+        
+    }
+
 
     onMount(async () => {
         getMinistry();
@@ -226,5 +246,10 @@
                 </td>
             </tr>
         {/each}
+        <tr>
+            <td>
+                    <Button color="danger" on:click={deleteData}>Delete All</Button>
+            </td>
+        </tr>
     </tbody>
 </Table>
