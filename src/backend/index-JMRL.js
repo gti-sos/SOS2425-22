@@ -83,7 +83,7 @@ function loadBackendJMRL(app) {
 
     // GET PARA LOS DATOS (CON PAGINACION)
     app.get(BASE_API + recurso, (request, response) => {
-        let { province, creation_year, id, portalId, postal_code, latitude, length, year, num_workers, from, to, limit, offset } = request.query;
+        let {province,creation_year,id,portalId,postal_code,latitude,length,title,equipment_type,public_titularity,street_address,year,num_workers,from,to,limit,offset } = request.query;
         let query = {};
 
         if (province) {
@@ -106,6 +106,18 @@ function loadBackendJMRL(app) {
         }
         if(length) {
             query.length = Number(length);
+        }
+        if (title) {
+            query.title = title;
+        }
+        if (equipment_type) {
+            query.equipment_type = equipment_type;
+        }
+        if (public_titularity) {
+            query.public_titularity = public_titularity;
+        }
+        if (street_address) {
+            query.street_address = street_address;
         }
         if(year) {
             query.year = Number(year);
