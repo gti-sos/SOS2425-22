@@ -1,1 +1,1 @@
-<p><a href="/about">about</a></p>
+<ul><p>Desarrollado por el equipo de SOS2425-22</p></ul>

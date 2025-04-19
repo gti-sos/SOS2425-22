@@ -1,3 +1,1 @@
-<h1>My APP</h1>
-<a href="/">Home</a>
-<a href="/ministry-of-justice-in-zaragoza">ministry-of-justice-in-zaragoza</a>
+<h1><ul><a href="/">INICIO</a></ul></h1>
