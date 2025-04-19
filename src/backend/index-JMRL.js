@@ -22,11 +22,13 @@ let csvContent = parse(fileContent, {
         if (context.column == 'postal_code') return Number(value)
         if (context.column == 'latitude') return Number(value)
         if (context.column == 'length') return Number(value)
+        if (context.column == 'year') return Number(value)
+        if (context.column == 'num_workers') return Number(value)
         return value
     }
 });
 
-const BASE_API = "/api/v1";
+const BASE_API = "/api/v2";
 const recurso = "/ministry-of-justice-in-zaragoza";
 const db = new dataStore();
 
@@ -81,9 +83,12 @@ function loadBackendJMRL(app) {
 
     // GET PARA LOS DATOS (CON PAGINACION)
     app.get(BASE_API + recurso, (request, response) => {
-        let { creation_year, id, portalId, postal_code, from, to, limit, offset } = request.query;
+        let {province,creation_year,id,portalId,postal_code,latitude,length,title,equipment_type,public_titularity,street_address,year,num_workers,from,to,limit,offset } = request.query;
         let query = {};
 
+        if (province) {
+            query.province = province;
+        }
         if (creation_year) {
             query.creation_year = Number(creation_year);
         }
@@ -95,6 +100,30 @@ function loadBackendJMRL(app) {
         }
         if(postal_code) {
             query.postal_code = Number(postal_code);
+        }
+        if(latitude) {
+            query.latitude = Number(latitude);
+        }
+        if(length) {
+            query.length = Number(length);
+        }
+        if (title) {
+            query.title = title;
+        }
+        if (equipment_type) {
+            query.equipment_type = equipment_type;
+        }
+        if (public_titularity) {
+            query.public_titularity = public_titularity;
+        }
+        if (street_address) {
+            query.street_address = street_address;
+        }
+        if(year) {
+            query.year = Number(year);
+        }
+        if(num_workers) {
+            query.num_workers = Number(num_workers);
         }
         if (from || to) {
             query.id = {};
@@ -125,16 +154,17 @@ function loadBackendJMRL(app) {
 
     // POST A TODOS LOS DATOS
     app.post(BASE_API + recurso, (request, response) => {
-        let {province,creation_year,id,portalId,postal_code,latitude,length,title,equipment_type,public_titularity,street_address,geometry} = request.body;
+        let {province,creation_year,id,portalId,postal_code,latitude,length,title,equipment_type,public_titularity,street_address,year,num_workers} = request.body;
         // VALIDAR PETICION
         if (province === undefined || creation_year === undefined || id === undefined || portalId=== undefined || 
             postal_code === undefined || latitude === undefined || length === undefined || title === undefined || 
-            equipment_type === undefined || public_titularity === undefined || street_address === undefined || geometry === undefined) {
+            equipment_type === undefined || public_titularity === undefined || street_address === undefined ||
+            year === undefined || num_workers === undefined) {
                 return response.sendStatus(400);
         }
 
         // COMPROBAMOS SI YA EXISTE UN REGISTRO CON EL MISMO ID
-        db.findOne({ id: id }, (err, existingData) => {
+        db.findOne({ province: province, year:year, id:id }, (err, existingData) => {
             if (err) {
                 return response.status(500).send("Error al acceder a la base de datos");
             }
@@ -164,9 +194,11 @@ function loadBackendJMRL(app) {
     });
 
     //GET A DATO ESPECIFICO
-    app.get(BASE_API + recurso + "/:id", (request, response) => {
-        let parametroId = Number(request.params.id);
-        db.findOne({ id: parametroId }, (err, data) => {
+    app.get(BASE_API + recurso + "/:province/:year/:id", (request, response) => {
+        let paramId = Number(request.params.id);
+        let paramProv = request.params.province;
+        let paramYear = Number(request.params.year);
+        db.findOne({ province: paramProv, year:paramYear, id:paramId }, (err, data) => {
             if (err) {
                 return response.status(500).send("Error al acceder a los datos");
             }
@@ -180,37 +212,27 @@ function loadBackendJMRL(app) {
         });
     });
 
-    // POST PARA VOLVER A LA VERSION PREVIA DE LA BASE DE DATOS
-    app.post(BASE_API + recurso + "/reset", (request, response) => {
-        db.remove({}, { multi: true }, (err) => {
-            if (err) {
-                return response.status(500).send("Error al volver al version anterior de la base de datos");
-            }
-            db.insert(csvContent, (err) => {
-                if (err) {
-                    return response.status(500).send("Error al restaurar la version anterior de la base de datos");
-                }
-                response.status(200).send("La base de datos volvio a su version previa");
-            });
-        });
-    });
-
     //FALLO DE POST A UN DATO ESPECIFICO
-    app.post(BASE_API + recurso + "/:id", (request, response) => {
+    app.post(BASE_API + recurso + "/:province/:year/:id", (request, response) => {
         response.sendStatus(405);
     });
 
     //PUT A UN DATO ESPECIFICO
-    app.put(BASE_API + recurso + "/:id", (request, response) => {
-        let parametroId = Number(request.params.id);
+    app.put(BASE_API + recurso + "/:province/:year/:id", (request, response) => {
+        let paramId = Number(request.params.id);
+        let paramProv = request.params.province;
+        let paramYear = Number(request.params.year);
+
         let datoAct = request.body.id;
+        let datoAct2 = request.body.province;
+        let datoAct3 = request.body.year;
 
         //VERIFICAMOS QUE COINCIDAN LOS IDs
-        if (datoAct !== parametroId) {
+        if (datoAct !== paramId || datoAct2 !== paramProv || datoAct3 !== paramYear) {
             return response.sendStatus(400);
         }
 
-        db.update({ id: parametroId }, request.body, {}, (err, reemplazo) => {
+        db.update({ province: paramProv, year:paramYear, id:paramId }, request.body, {}, (err, reemplazo) => {
             if (err) {
                 return response.status(500).send("Error al actualizar el dato");
             }
@@ -222,10 +244,12 @@ function loadBackendJMRL(app) {
     });
 
     //DELETE DE UN DATO ESPECIFICO
-    app.delete(BASE_API + recurso + "/:id", (request, response) => {
-        let parametroId = Number(request.params.id);
+    app.delete(BASE_API + recurso + "/:province/:year/:id", (request, response) => {
+        let paramId = Number(request.params.id);
+        let paramProv = request.params.province;
+        let paramYear = Number(request.params.year);
 
-        db.remove({ id: parametroId }, {}, (err, datoElim) => {
+        db.remove({ province: paramProv, year:paramYear, id:paramId }, {}, (err, datoElim) => {
             if (err) {
                 response.status(500).send("No se ha podido eliminar el dato");
                 console.error(`ERROR: ${err}`);
