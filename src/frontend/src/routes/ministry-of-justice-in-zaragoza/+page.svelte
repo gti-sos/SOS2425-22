@@ -3,18 +3,15 @@
 </svelte:head>
 
 <script>
-// @ts-nocheck
-    import { dev } from "$app/environment"; 
+    // @ts-nocheck
+    import { dev } from "$app/environment";
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
     import { Button, Table, Form, FormGroup, Input, Label, Row, Col, Alert } from '@sveltestrap/sveltestrap';
 
     let DEVEL_HOST = "http://localhost:16078";
     let API = "/api/v2/ministry-of-justice-in-zaragoza";
-
-    if(dev) {
-        API = DEVEL_HOST + API;
-    }
+    if(dev) API = DEVEL_HOST + API;
 
     // Datos y estados
     let ministryData = [];
@@ -49,15 +46,13 @@
     let totalPages = 1;
     let paginatedData = [];
 
-    // Calcular datos paginados
+    // Funciones auxiliares
     function updatePagination() {
         totalPages = Math.ceil(filteredData.length / itemsPerPage);
         const startIndex = (currentPage - 1) * itemsPerPage;
-        const endIndex = Math.min(startIndex + itemsPerPage, filteredData.length);
-        paginatedData = filteredData.slice(startIndex, endIndex);
+        paginatedData = filteredData.slice(startIndex, startIndex + itemsPerPage);
     }
 
-    // Cambiar de página
     function goToPage(page) {
         if (page < 1 || page > totalPages) return;
         currentPage = page;
@@ -65,7 +60,6 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Mostrar mensaje al usuario
     function showMessage(text, type = "info", duration = 5000) {
         userMessage = { text, type };
         if (duration > 0) {
@@ -73,46 +67,135 @@
         }
     }
 
-    // Traducir errores técnicos a mensajes de usuario
     function translateError(error) {
-        if (error.includes("404")) {
-            return "No se encontró el dato solicitado.";
-        } else if (error.includes("400")) {
-            return "Datos incorrectos. Revise los valores ingresados.";
-        } else if (error.includes("500")) {
-            return "Error en el servidor. Por favor, intente más tarde.";
-        } else if (error.includes("409")) {
-            return "No se pudo crear, el dato ya existe.";
-        }
-        return "Ocurrió un error inesperado.";
+        if (error.includes("404")) return "Datos no encontrados";
+        if (error.includes("400")) return "Datos inválidos";
+        if (error.includes("500")) return "Error del servidor";
+        return "Error inesperado";
     }
 
-    // Obtener datos iniciales
-    async function getMinistry() {
+    // Operaciones CRUD
+    async function refreshData(showSuccess = true) {
         isLoading = true;
-        showMessage("Cargando datos...", "info");
         try {
-            const res = await fetch(API, {method: "GET"});
+            const res = await fetch(API, { method: "GET" });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
             
-            if (!res.ok) {
-                throw new Error(`HTTP ${res.status}`);
-            }
-            
-            const data = await res.json();
-            ministryData = data;
+            ministryData = await res.json();
             filteredData = [...ministryData];
-            currentPage = 1;
             updatePagination();
-            showMessage("Datos cargados correctamente", "success");
+            
+            if (showSuccess) showMessage("Datos cargados correctamente", "success");
         } catch (error) {
-            console.error("Error al obtener datos:", error);
+            console.error("Error:", error);
             showMessage(translateError(error.message), "error");
         } finally {
             isLoading = false;
         }
     }
 
-    // Filtrar por campo específico
+    async function createMinistry() {
+        if (!newMinistryProvince || !newMinistryTitle) {
+            showMessage("Provincia y Título son obligatorios", "error");
+            return;
+        }
+
+        isLoading = true;
+        showMessage("Creando ministerio...", "info");
+        
+        try {
+            const res = await fetch(API, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    province: newMinistryProvince,
+                    creation_year: Number(newMinistryCreationYear) || 0,
+                    id: Number(newMinistryId) || 0,
+                    portalId: Number(newMinistryPortalId) || 0,
+                    postal_code: Number(newMinistryPostalCode) || 0,
+                    latitude: Number(newMinistryLatitude) || 0,
+                    length: Number(newMinistryLength) || 0,
+                    title: newMinistryTitle,
+                    equipment_type: newMinistryEquipmentType || "Desconocido",
+                    public_titularity: newMinistryPublicTitularity || "Desconocida", 
+                    street_address: newMinistryStreetAddress || "No especificada",
+                    year: Number(newMinistryYear) || new Date().getFullYear(),
+                    num_workers: Number(newMinistryNumWorkers) || 0
+                })
+            });
+            
+            if (res.ok) {
+                await refreshData(false);
+                showMessage("Ministerio creado exitosamente", "success");
+                // Resetear campos
+                newMinistryProvince = "";
+                newMinistryCreationYear = "";
+                newMinistryId = "";
+                newMinistryPortalId = "";
+                newMinistryPostalCode = "";
+                newMinistryLatitude = "";
+                newMinistryLength = "";
+                newMinistryTitle = "";
+                newMinistryEquipmentType = "";
+                newMinistryPublicTitularity = "";
+                newMinistryStreetAddress = "";
+                newMinistryYear = "";
+                newMinistryNumWorkers = "";
+            } else {
+                throw new Error(`HTTP ${res.status}`);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            showMessage("Error al crear ministerio: " + translateError(error.message), "error");
+        } finally {
+            isLoading = false;
+        }
+    }
+
+    async function deleteMinistry(province, year, id) {
+        isLoading = true;
+        showMessage("Eliminando ministerio...", "info");
+        
+        try {
+            const res = await fetch(`${API}/${province}/${year}/${id}`, { method: "DELETE" });
+            
+            if (res.ok) {
+                await refreshData(false);
+                showMessage("Ministerio eliminado correctamente", "success");
+            } else {
+                throw new Error(`HTTP ${res.status}`);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            showMessage("Error al eliminar ministerio: " + translateError(error.message), "error");
+        } finally {
+            isLoading = false;
+        }
+    }
+
+    async function deleteData() {
+        if (!confirm("¿Eliminar TODOS los datos? Esta acción no se puede deshacer.")) return;
+        
+        isLoading = true;
+        showMessage("Eliminando todos los datos...", "info");
+        
+        try {
+            const res = await fetch(API, { method: "DELETE" });
+            
+            if (res.ok) {
+                await refreshData(false);
+                showMessage("Todos los datos han sido eliminados", "success");
+            } else {
+                throw new Error(`HTTP ${res.status}`);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            showMessage("Error al eliminar datos: " + translateError(error.message), "error");
+        } finally {
+            isLoading = false;
+        }
+    }
+
     async function filterByField() {
         if (!filterField || filterValue === "") {
             filteredData = [...ministryData];
@@ -152,7 +235,6 @@
         }
     }
 
-    // Buscar por intervalo de IDs
     async function searchByIdRange() {
         if (!minId && !maxId) {
             filteredData = [...ministryData];
@@ -189,134 +271,20 @@
         }
     }
 
-    // Crear nuevo ministerio
-    async function createMinistry() {
-        if (!newMinistryProvince || !newMinistryTitle) {
-            showMessage("Provincia y Título son obligatorios", "error");
-            return;
-        }
-
-        isLoading = true;
-        showMessage("Creando ministerio...", "info");
-        
-        try {
-            const res = await fetch(API, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ 
-                    province: newMinistryProvince,
-                    creation_year: Number(newMinistryCreationYear) || 0,
-                    id: Number(newMinistryId) || 0,
-                    portalId: Number(newMinistryPortalId) || 0,
-                    postal_code: Number(newMinistryPostalCode) || 0,
-                    latitude: Number(newMinistryLatitude) || 0,
-                    length: Number(newMinistryLength) || 0,
-                    title: newMinistryTitle,
-                    equipment_type: newMinistryEquipmentType || "Desconocido",
-                    public_titularity: newMinistryPublicTitularity || "Desconocida", 
-                    street_address: newMinistryStreetAddress || "No especificada",
-                    year: Number(newMinistryYear) || new Date().getFullYear(),
-                    num_workers: Number(newMinistryNumWorkers) || 0
-                })
-            });
-  
-            if(res.status === 201) {
-                showMessage("Ministerio creado exitosamente", "success");
-                await getMinistry();
-                // Limpiar campos
-                newMinistryProvince = "";
-                newMinistryCreationYear = "";
-                newMinistryId = "";
-                newMinistryPortalId = "";
-                newMinistryPostalCode = "";
-                newMinistryLatitude = "";
-                newMinistryLength = "";
-                newMinistryTitle = "";
-                newMinistryEquipmentType = "";
-                newMinistryPublicTitularity = "";
-                newMinistryStreetAddress = "";
-                newMinistryYear = "";
-                newMinistryNumWorkers = "";
-            } else {
-                const errorData = await res.json();
-                throw new Error(errorData.message || `HTTP ${res.status}`);
-            }
-        } catch (error) {
-            console.error("Error al crear:", error);
-            showMessage(translateError(error.message), "error");
-        } finally {
-            isLoading = false;
-        }
-    }
-
-    // Eliminar ministerio
-    async function deleteMinistry(province, year, id) {
-        isLoading = true;
-        showMessage("Eliminando ministerio...", "info");
-        
-        try {
-            const res = await fetch(`${API}/${province}/${year}/${id}`, {method: "DELETE"});
-            
-            if(res.ok) {
-                showMessage("Ministerio eliminado", "success");
-                getMinistry();
-            } else {
-                throw new Error(`HTTP ${res.status}`);
-            }
-        } catch (error) {
-            console.error("Error al eliminar:", error);
-            showMessage(translateError(error.message), "error");
-        } finally {
-            isLoading = false;
-        }
-    }
-
-    // Eliminar todos los datos
-    async function deleteData() {
-        if(!confirm("¿Eliminar TODOS los datos? Esta acción no se puede deshacer.")) return;
-        
-        isLoading = true;
-        showMessage("Eliminando todos los datos...", "info", -1);
-        
-        try {
-            const res = await fetch(API, {method: "DELETE"});
-            
-            if(res.ok) {
-                showMessage("Todos los datos eliminados", "success");
-                await getMinistry();
-            } else {
-                throw new Error(`HTTP ${res.status}`);
-            }
-        } catch (error) {
-            console.error("Error al eliminar:", error);
-            showMessage(translateError(error.message), "error");
-        } finally {
-            isLoading = false;
-        }
-    }
-
-    // Actualizar paginación cuando cambian los datos
-    $: {
-        if (filteredData.length) {
-            updatePagination();
-        }
-    }
-
+    // Inicialización
     onMount(async () => {
-        await getMinistry();
+        await refreshData(true);
     });
 </script>
 
-<!-- Mensajes para el usuario -->
+<h2>Ministry of Justice in Zaragoza</h2>
+
 {#if userMessage.text}
     <Alert color={userMessage.type === 'success' ? 'success' : userMessage.type === 'error' ? 'danger' : 'info'}>
         {userMessage.text}
     </Alert>
 {/if}
 
-<h2>Ministry of Justice in Zaragoza List</h2>
-
-<!-- Sección de filtros -->
 <Form>
     <Row>
         <Col md="6">
@@ -355,7 +323,7 @@
         
         <Col md="6">
             <FormGroup>
-                <h4>Buscar por ID</h4>
+                <h4>Buscar por rango de IDs</h4>
                 <div class="range-inputs">
                     <Input type="number" bind:value={minId} placeholder="ID mínimo"/>
                     <span>a</span>
@@ -375,7 +343,25 @@
     </Row>
 </Form>
 
-<!-- Tabla de datos -->
+<div class="pagination-controls">
+    <Button color="secondary" on:click={() => goToPage(1)} disabled={currentPage === 1 || isLoading}>
+        « Primera
+    </Button>
+    <Button color="secondary" on:click={() => goToPage(currentPage - 1)} disabled={currentPage === 1 || isLoading}>
+        Anterior
+    </Button>
+    <Button color="secondary" on:click={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages || isLoading}>
+        Siguiente 
+    </Button>
+    <Button color="secondary" on:click={() => goToPage(totalPages)} disabled={currentPage === totalPages || isLoading}>
+        Última »
+    </Button>
+</div>
+
+<div class="pagination-info">
+    Página {currentPage} de {totalPages} | Mostrando {paginatedData.length} de {filteredData.length} resultados
+</div>
+
 <Table>
     <thead>
         <tr>
@@ -396,7 +382,6 @@
         </tr>
     </thead>
     <tbody>
-        <!-- Fila para crear nuevo ministerio -->
         <tr>
             <td><Input bind:value={newMinistryProvince} placeholder="Provincia" required/></td>
             <td><Input type="number" bind:value={newMinistryCreationYear} placeholder="Año creación"/></td>
@@ -452,23 +437,6 @@
     </tbody>
 </Table>
 
-<!-- Controles de paginación inferiores -->
-<div class="pagination-controls">
-    <Button color="secondary" on:click={() => goToPage(1)} disabled={currentPage === 1 || isLoading}>
-        « Primera
-    </Button>
-    <Button color="secondary" on:click={() => goToPage(currentPage - 1)} disabled={currentPage === 1 || isLoading}>
-        Anterior
-    </Button>
-    <Button color="secondary" on:click={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages || isLoading}>
-        Siguiente
-    </Button>
-    <Button color="secondary" on:click={() => goToPage(totalPages)} disabled={currentPage === totalPages || isLoading}>
-        Última »
-    </Button>
-</div>
-
-<!-- Acciones globales -->
 <div class="global-actions">
     <Button color="danger" on:click={deleteData} disabled={isLoading}>
         {isLoading ? 'Procesando...' : 'Eliminar TODOS los datos'}
@@ -496,10 +464,6 @@
         margin: 1rem 0;
     }
     
-    th {
-        white-space: nowrap;
-    }
-    
     .pagination-controls {
         display: flex;
         justify-content: center;
@@ -508,6 +472,17 @@
         flex-wrap: wrap;
     }
     
+    .pagination-info {
+        text-align: center;
+        margin: 0.5rem 0;
+        color: #666;
+        font-size: 0.9rem;
+    }
+    
+    th {
+        white-space: nowrap;
+    }
+
     @media (max-width: 768px) {
         .pagination-controls {
             gap: 0.2rem;
