@@ -1,0 +1,1 @@
+export { default as component } from "../../../../src/routes/ministry-of-justice-in-zaragoza/[province]/[year]/[id]/+page.svelte";
