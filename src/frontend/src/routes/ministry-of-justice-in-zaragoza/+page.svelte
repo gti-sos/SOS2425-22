@@ -4,8 +4,7 @@
 
 <script>
 // @ts-nocheck
-    import { dev } from "$app/environment";
-    import { page } from "$app/stores"; 
+    import { dev } from "$app/environment"; 
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
     import { Button, Table, Form, FormGroup, Input, Label, Row, Col, Alert } from '@sveltestrap/sveltestrap';
@@ -21,7 +20,7 @@
     let ministryData = [];
     let filteredData = [];
     let isLoading = false;
-    let userMessage = { text: "", type: "" }; // type: "success", "error", "info"
+    let userMessage = { text: "", type: "" };
     
     // Variables para creación
     let newMinistryProvince;
@@ -54,7 +53,7 @@
     function updatePagination() {
         totalPages = Math.ceil(filteredData.length / itemsPerPage);
         const startIndex = (currentPage - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
+        const endIndex = Math.min(startIndex + itemsPerPage, filteredData.length);
         paginatedData = filteredData.slice(startIndex, endIndex);
     }
 
@@ -63,6 +62,7 @@
         if (page < 1 || page > totalPages) return;
         currentPage = page;
         updatePagination();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // Mostrar mensaje al usuario
@@ -76,13 +76,15 @@
     // Traducir errores técnicos a mensajes de usuario
     function translateError(error) {
         if (error.includes("404")) {
-            return "No se encontró el dato solicitado. Por favor, verifique la información.";
+            return "No se encontró el dato solicitado.";
         } else if (error.includes("400")) {
             return "Datos incorrectos. Revise los valores ingresados.";
         } else if (error.includes("500")) {
             return "Error en el servidor. Por favor, intente más tarde.";
+        } else if (error.includes("409")) {
+            return "No se pudo crear, el dato ya existe.";
         }
-        return "Ocurrió un error inesperado. Por favor, intente nuevamente.";
+        return "Ocurrió un error inesperado.";
     }
 
     // Obtener datos iniciales
@@ -99,6 +101,7 @@
             const data = await res.json();
             ministryData = data;
             filteredData = [...ministryData];
+            currentPage = 1;
             updatePagination();
             showMessage("Datos cargados correctamente", "success");
         } catch (error) {
@@ -137,13 +140,13 @@
             updatePagination();
             
             if (filteredData.length === 0) {
-                showMessage("No se encontraron resultados con ese filtro", "info");
+                showMessage("No se encontraron resultados", "info");
             } else {
-                showMessage(`Mostrando ${filteredData.length} resultados filtrados`, "success");
+                showMessage(`${filteredData.length} resultados encontrados`, "success");
             }
         } catch (error) {
             console.error("Error al filtrar:", error);
-            showMessage("Error al aplicar el filtro", "error");
+            showMessage("Error al aplicar filtro", "error");
         } finally {
             isLoading = false;
         }
@@ -160,7 +163,7 @@
         }
 
         isLoading = true;
-        showMessage("Buscando en el rango de IDs...", "info");
+        showMessage("Buscando...", "info");
         
         try {
             const min = minId ? Number(minId) : 0;
@@ -174,13 +177,13 @@
             updatePagination();
             
             if (filteredData.length === 0) {
-                showMessage("No se encontraron resultados en ese rango de IDs", "info");
+                showMessage("No se encontraron resultados", "info");
             } else {
-                showMessage(`Encontrados ${filteredData.length} resultados`, "success");
+                showMessage(`${filteredData.length} resultados encontrados`, "success");
             }
         } catch (error) {
-            console.error("Error en búsqueda por ID:", error);
-            showMessage("Error al buscar por rango de IDs", "error");
+            console.error("Error en búsqueda:", error);
+            showMessage("Error al buscar", "error");
         } finally {
             isLoading = false;
         }
@@ -188,16 +191,13 @@
 
     // Crear nuevo ministerio
     async function createMinistry() {
-        if (!newMinistryProvince || !newMinistryCreationYear || !newMinistryId || !newMinistryPortalId || !newMinistryPostalCode || ! newMinistryLatitude
-            || !newMinistryLength || !newMinistryTitle || !newMinistryEquipmentType || !newMinistryPublicTitularity || ! newMinistryStreetAddress
-            || !newMinistryYear || !newMinistryNumWorkers) {
-
-            showMessage("Todos los campos son campos obligatorios", "error");
+        if (!newMinistryProvince || !newMinistryTitle) {
+            showMessage("Provincia y Título son obligatorios", "error");
             return;
         }
 
         isLoading = true;
-        showMessage("Creando nuevo ministerio...", "info");
+        showMessage("Creando ministerio...", "info");
         
         try {
             const res = await fetch(API, {
@@ -205,18 +205,18 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ 
                     province: newMinistryProvince,
-                    creation_year: Number(newMinistryCreationYear),
-                    id: Number(newMinistryId),
-                    portalId: Number(newMinistryPortalId),
-                    postal_code: Number(newMinistryPostalCode),
-                    latitude: Number(newMinistryLatitude),
-                    length: Number(newMinistryLength),
+                    creation_year: Number(newMinistryCreationYear) || 0,
+                    id: Number(newMinistryId) || 0,
+                    portalId: Number(newMinistryPortalId) || 0,
+                    postal_code: Number(newMinistryPostalCode) || 0,
+                    latitude: Number(newMinistryLatitude) || 0,
+                    length: Number(newMinistryLength) || 0,
                     title: newMinistryTitle,
-                    equipment_type: newMinistryEquipmentType,
-                    public_titularity: newMinistryPublicTitularity, 
-                    street_address: newMinistryStreetAddress,
-                    year: Number(newMinistryYear),
-                    num_workers: Number(newMinistryNumWorkers)
+                    equipment_type: newMinistryEquipmentType || "Desconocido",
+                    public_titularity: newMinistryPublicTitularity || "Desconocida", 
+                    street_address: newMinistryStreetAddress || "No especificada",
+                    year: Number(newMinistryYear) || new Date().getFullYear(),
+                    num_workers: Number(newMinistryNumWorkers) || 0
                 })
             });
   
@@ -242,7 +242,7 @@
                 throw new Error(errorData.message || `HTTP ${res.status}`);
             }
         } catch (error) {
-            console.error("Error al crear ministerio:", error);
+            console.error("Error al crear:", error);
             showMessage(translateError(error.message), "error");
         } finally {
             isLoading = false;
@@ -251,8 +251,6 @@
 
     // Eliminar ministerio
     async function deleteMinistry(province, year, id) {
-        if(!confirm(`¿Está seguro de eliminar el ministerio ${id} de ${province}?`)) return;
-        
         isLoading = true;
         showMessage("Eliminando ministerio...", "info");
         
@@ -260,8 +258,8 @@
             const res = await fetch(`${API}/${province}/${year}/${id}`, {method: "DELETE"});
             
             if(res.ok) {
-                showMessage("Ministerio eliminado correctamente", "success");
-                await getMinistry();
+                showMessage("Ministerio eliminado", "success");
+                getMinistry();
             } else {
                 throw new Error(`HTTP ${res.status}`);
             }
@@ -275,22 +273,22 @@
 
     // Eliminar todos los datos
     async function deleteData() {
-        if(!confirm("¿Está ABSOLUTAMENTE seguro de eliminar TODOS los datos? Esta acción no se puede deshacer.")) return;
+        if(!confirm("¿Eliminar TODOS los datos? Esta acción no se puede deshacer.")) return;
         
         isLoading = true;
-        showMessage("Eliminando todos los datos...", "info", -1); // Mensaje persistente
+        showMessage("Eliminando todos los datos...", "info", -1);
         
         try {
             const res = await fetch(API, {method: "DELETE"});
             
             if(res.ok) {
-                showMessage("Todos los datos han sido eliminados", "success");
+                showMessage("Todos los datos eliminados", "success");
                 await getMinistry();
             } else {
                 throw new Error(`HTTP ${res.status}`);
             }
         } catch (error) {
-            console.error("Error al eliminar datos:", error);
+            console.error("Error al eliminar:", error);
             showMessage(translateError(error.message), "error");
         } finally {
             isLoading = false;
@@ -323,7 +321,7 @@
     <Row>
         <Col md="6">
             <FormGroup>
-                <h4>Filtrar por campo específico</h4>
+                <h4>Filtrar por campo</h4>
                 <Label for="filterField">Campo:</Label>
                 <Input type="select" bind:value={filterField} id="filterField">
                     <option value="creation_year">Año de creación</option>
@@ -357,7 +355,7 @@
         
         <Col md="6">
             <FormGroup>
-                <h4>Buscar por rango de IDs</h4>
+                <h4>Buscar por ID</h4>
                 <div class="range-inputs">
                     <Input type="number" bind:value={minId} placeholder="ID mínimo"/>
                     <span>a</span>
@@ -366,7 +364,7 @@
                 
                 <div class="button-group">
                     <Button color="primary" on:click={searchByIdRange} disabled={isLoading}>
-                        {isLoading ? 'Buscando...' : 'Buscar por ID'}
+                        {isLoading ? 'Buscando...' : 'Buscar'}
                     </Button>
                     <Button color="secondary" on:click={() => {minId = ""; maxId = ""; filteredData = [...ministryData]; currentPage = 1;}}>
                         Limpiar
@@ -437,7 +435,7 @@
                 <td>{mini.num_workers}</td>
                 <td>
                     <Button color="danger" size="sm" on:click={() => deleteMinistry(mini.province, mini.year, mini.id)} disabled={isLoading}>
-                        Eliminar
+                        {isLoading ? 'Eliminando...' : 'Eliminar'}
                     </Button>
                     <Button color="primary" size="sm" on:click={() => goto(`/ministry-of-justice-in-zaragoza/${mini.province}/${mini.year}/${mini.id}`)}>
                         Editar
@@ -460,19 +458,14 @@
         « Primera
     </Button>
     <Button color="secondary" on:click={() => goToPage(currentPage - 1)} disabled={currentPage === 1 || isLoading}>
-         Anterior
+        Anterior
     </Button>
     <Button color="secondary" on:click={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages || isLoading}>
-        Siguiente 
+        Siguiente
     </Button>
     <Button color="secondary" on:click={() => goToPage(totalPages)} disabled={currentPage === totalPages || isLoading}>
         Última »
     </Button>
-</div>
-
-<!-- Información de paginación inferior -->
-<div class="pagination-info">
-    Página {currentPage} de {totalPages} | Mostrando {paginatedData.length} de {filteredData.length} resultados
 </div>
 
 <!-- Acciones globales -->
@@ -513,13 +506,6 @@
         gap: 0.3rem;
         margin: 1rem 0;
         flex-wrap: wrap;
-    }
-    
-    .pagination-info {
-        text-align: center;
-        margin: 0.5rem 0;
-        color: #666;
-        font-size: 0.9rem;
     }
     
     @media (max-width: 768px) {
