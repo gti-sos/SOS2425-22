@@ -1,3 +1,6 @@
+<svelte:head>
+    <title>Inicio</title>
+</svelte:head>
 <main>
     <h1><u>SOS2425-22</u></h1>
     <br>
