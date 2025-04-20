@@ -3,7 +3,6 @@
 </svelte:head>
 
 <script>
-    //prueba render
     // @ts-nocheck
     import { dev } from "$app/environment";
     import { goto } from "$app/navigation";
