@@ -4,7 +4,7 @@
 	"values": [
 		{
 			"key": "base_url",
-			"value": "https://sos2425-22.onrender.com/api/v1/ministry-of-justice-in-zaragoza",
+			"value": "https://sos2425-22.onrender.com/api/v2/ministry-of-justice-in-zaragoza",
 			"type": "default",
 			"enabled": true
 		}
