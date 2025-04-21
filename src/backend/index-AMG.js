@@ -155,7 +155,9 @@ function loadBackendAMG(app){
             return res.sendStatus(400), "Missing fields: " + missingFields.join(", ");
         } else if (queryParams.length !== 6) {
             return res.sendStatus(400, "Incorrect fields size");
-        } else {
+        } else if(req.params.province != body.province){
+            return res.sendStatus(400);
+        }else {
             db.update({ "province": req.params.province }, { $set: body }, (err, numUpdated) => {
                 if (err) {
                     res.sendStatus(500, "Internal Server Error");
