@@ -9,5 +9,5 @@
 - **URL**: [https://sos2425-22.onrender.com/](https://sos2425-22.onrender.com/)
 -  **APIs**:
     - [http://sos2425-22.onrender.com/api/v1/missing-people-stats/docs](http://sos2425-22.onrender.com/api/v1/missing-people-stats/docs) (developed by Alejandro Morilla García)
-    - [http://sos2425-22.onrender.com/api/v1/ministry-of-justice-in-zaragoza/docs](http://sos2425-22.onrender.com/api/v1/ministry-of-justice-in-zaragoza/docs) (developed by Juan Manuel Ríos López)
+    - [http://sos2425-22.onrender.com/api/v1/ministry-of-justice-in-zaragoza/docs](http://sos2425-22.onrender.com/api/v2/ministry-of-justice-in-zaragoza/docs) (developed by Juan Manuel Ríos López)
     - TBD
