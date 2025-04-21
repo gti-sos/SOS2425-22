@@ -26,25 +26,18 @@
  * ```
  */
 declare module '$env/static/private' {
-	export const LESSOPEN: string;
 	export const USER: string;
 	export const npm_config_user_agent: string;
-	export const GIT_ASKPASS: string;
 	export const npm_node_execpath: string;
 	export const SHLVL: string;
+	export const WT_PROFILE_ID: string;
 	export const npm_config_noproxy: string;
 	export const HOME: string;
 	export const OLDPWD: string;
-	export const TERM_PROGRAM_VERSION: string;
-	export const VSCODE_IPC_HOOK_CLI: string;
 	export const npm_package_json: string;
-	export const VSCODE_GIT_ASKPASS_MAIN: string;
-	export const VSCODE_GIT_ASKPASS_NODE: string;
 	export const npm_config_userconfig: string;
 	export const npm_config_local_prefix: string;
-	export const DBUS_SESSION_BUS_ADDRESS: string;
 	export const npm_config_engine_strict: string;
-	export const COLORTERM: string;
 	export const WSL_DISTRO_NAME: string;
 	export const COLOR: string;
 	export const npm_config_metrics_registry: string;
@@ -61,24 +54,20 @@ declare module '$env/static/private' {
 	export const PATH: string;
 	export const NODE: string;
 	export const npm_package_name: string;
+	export const WT_SESSION: string;
 	export const XDG_RUNTIME_DIR: string;
 	export const DISPLAY: string;
 	export const LANG: string;
 	export const LS_COLORS: string;
-	export const VSCODE_GIT_IPC_HANDLE: string;
-	export const TERM_PROGRAM: string;
 	export const npm_lifecycle_script: string;
 	export const SHELL: string;
 	export const npm_package_version: string;
 	export const npm_lifecycle_event: string;
-	export const LESSCLOSE: string;
-	export const VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 	export const npm_config_globalconfig: string;
 	export const npm_config_init_module: string;
 	export const PWD: string;
 	export const npm_config_globalignorefile: string;
 	export const npm_execpath: string;
-	export const XDG_DATA_DIRS: string;
 	export const npm_config_global_prefix: string;
 	export const npm_command: string;
 	export const WSL2_GUI_APPS_ENABLED: string;
@@ -118,25 +107,18 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
-		LESSOPEN: string;
 		USER: string;
 		npm_config_user_agent: string;
-		GIT_ASKPASS: string;
 		npm_node_execpath: string;
 		SHLVL: string;
+		WT_PROFILE_ID: string;
 		npm_config_noproxy: string;
 		HOME: string;
 		OLDPWD: string;
-		TERM_PROGRAM_VERSION: string;
-		VSCODE_IPC_HOOK_CLI: string;
 		npm_package_json: string;
-		VSCODE_GIT_ASKPASS_MAIN: string;
-		VSCODE_GIT_ASKPASS_NODE: string;
 		npm_config_userconfig: string;
 		npm_config_local_prefix: string;
-		DBUS_SESSION_BUS_ADDRESS: string;
 		npm_config_engine_strict: string;
-		COLORTERM: string;
 		WSL_DISTRO_NAME: string;
 		COLOR: string;
 		npm_config_metrics_registry: string;
@@ -153,24 +135,20 @@ declare module '$env/dynamic/private' {
 		PATH: string;
 		NODE: string;
 		npm_package_name: string;
+		WT_SESSION: string;
 		XDG_RUNTIME_DIR: string;
 		DISPLAY: string;
 		LANG: string;
 		LS_COLORS: string;
-		VSCODE_GIT_IPC_HANDLE: string;
-		TERM_PROGRAM: string;
 		npm_lifecycle_script: string;
 		SHELL: string;
 		npm_package_version: string;
 		npm_lifecycle_event: string;
-		LESSCLOSE: string;
-		VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 		npm_config_globalconfig: string;
 		npm_config_init_module: string;
 		PWD: string;
 		npm_config_globalignorefile: string;
 		npm_execpath: string;
-		XDG_DATA_DIRS: string;
 		npm_config_global_prefix: string;
 		npm_command: string;
 		WSL2_GUI_APPS_ENABLED: string;

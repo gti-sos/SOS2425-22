@@ -5,7 +5,9 @@ export const nodes = [
 	() => import('./nodes/1'),
 	() => import('./nodes/2'),
 	() => import('./nodes/3'),
-	() => import('./nodes/4')
+	() => import('./nodes/4'),
+	() => import('./nodes/5'),
+	() => import('./nodes/6')
 ];
 
 export const server_loads = [];
@@ -13,7 +15,9 @@ export const server_loads = [];
 export const dictionary = {
 		"/": [2],
 		"/ministry-of-justice-in-zaragoza": [3],
-		"/ministry-of-justice-in-zaragoza/[province]/[year]/[id]": [4]
+		"/ministry-of-justice-in-zaragoza/[province]/[year]/[id]": [4],
+		"/missing-people-stats": [5],
+		"/missing-people-stats/[province]/[year]": [6]
 	};
 
 export const hooks = {

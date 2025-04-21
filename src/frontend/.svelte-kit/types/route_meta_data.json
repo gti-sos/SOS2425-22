@@ -1,5 +1,7 @@
 {
 	"/": [],
 	"/ministry-of-justice-in-zaragoza": [],
-	"/ministry-of-justice-in-zaragoza/[province]/[year]/[id]": []
+	"/ministry-of-justice-in-zaragoza/[province]/[year]/[id]": [],
+	"/missing-people-stats": [],
+	"/missing-people-stats/[province]/[year]": []
 }
