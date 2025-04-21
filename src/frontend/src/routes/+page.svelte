@@ -7,10 +7,10 @@
     <h2>Equipo</h2>
     <ul>
         <li>
-            <a href="https://github.com/juariolop1"> Juan Manuel Ríos López </a>
+            <a href="https://github.com/juariolop1"> Juan Manuel Ríos López - Ministry of Justice in Zaragoza </a>
         </li>
         <li>
-            <a href="https://github.com/aaleejandro01"> Alejandro Morilla García </a>
+            <a href="https://github.com/aaleejandro01"> Alejandro Morilla García - Missing People Stats</a>
         </li>
     </ul>
     <h2>Repositorio</h2>
