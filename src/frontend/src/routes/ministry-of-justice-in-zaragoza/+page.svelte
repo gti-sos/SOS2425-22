@@ -70,6 +70,7 @@
     function translateError(error) {
         if (error.includes("404")) return "Datos no encontrados";
         if (error.includes("400")) return "Datos inválidos";
+        if (error.includes("409")) return "Ya existe el dato";
         if (error.includes("500")) return "Error del servidor";
         return "Error inesperado";
     }
@@ -95,8 +96,8 @@
     }
 
     async function createMinistry() {
-        if (!newMinistryProvince || !newMinistryTitle) {
-            showMessage("Provincia y Título son obligatorios", "error");
+        if (!newMinistryProvince || !newMinistryId || !newMinistryYear) {
+            showMessage("Provincia, Id y Año son obligatorios", "error");
             return;
         }
 
@@ -110,16 +111,16 @@
                 body: JSON.stringify({
                     province: newMinistryProvince,
                     creation_year: Number(newMinistryCreationYear) || 0,
-                    id: Number(newMinistryId) || 0,
+                    id: Number(newMinistryId),
                     portalId: Number(newMinistryPortalId) || 0,
                     postal_code: Number(newMinistryPostalCode) || 0,
                     latitude: Number(newMinistryLatitude) || 0,
                     length: Number(newMinistryLength) || 0,
-                    title: newMinistryTitle,
+                    title: newMinistryTitle || "Desconocido",
                     equipment_type: newMinistryEquipmentType || "Desconocido",
                     public_titularity: newMinistryPublicTitularity || "Desconocida", 
                     street_address: newMinistryStreetAddress || "No especificada",
-                    year: Number(newMinistryYear) || new Date().getFullYear(),
+                    year: Number(newMinistryYear),
                     num_workers: Number(newMinistryNumWorkers) || 0
                 })
             });
@@ -290,7 +291,6 @@
         <Col md="6">
             <FormGroup>
                 <h4>Filtrar por campo</h4>
-                <Label for="filterField">Campo:</Label>
                 <Input type="select" bind:value={filterField} id="filterField">
                     <option value="creation_year">Año de creación</option>
                     <option value="province">Provincia</option>
@@ -307,7 +307,7 @@
                     <option value="num_workers">Número de trabajadores</option>
                 </Input>
                 
-                <Label for="filterValue">Valor:</Label>
+                <Label for="filterValue"></Label>
                 <Input bind:value={filterValue} id="filterValue" placeholder="Valor para filtrar"/>
                 
                 <div class="button-group">

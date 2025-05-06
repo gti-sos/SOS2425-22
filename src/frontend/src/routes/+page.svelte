@@ -46,4 +46,10 @@
             <a href="/missing-people-stats">FrontEnd Alejandro Morilla García</a>
         </li>
     </ul>
+    <h2>Integraciones</h2>
+    <ul>
+        <li>
+            <a href="/integrations">Integraciones Juan Manuel Ríos López</a>
+        </li>
+    </ul>
 </main>
