@@ -48,8 +48,8 @@ test('create, filter, edit and delete ministry', async ({ page }) => {
   await page.getByRole('button', { name: 'Crear' }).click();
 
   // search the new ministry
-  await page.getByRole('textbox', { name: 'Valor:' }).fill(testNumParams)
-  await page.getByRole('button', { name: 'Aplicar Filtro' }).click();
+  await page.getByPlaceholder('ID mínimo').fill(testNumParams)
+  await page.getByRole('button', { name: 'Buscar' }).click();
 
   // click the edit button
   await page.getByRole('button', { name: 'Editar' }).click();
@@ -60,7 +60,7 @@ test('create, filter, edit and delete ministry', async ({ page }) => {
   await page.getByRole('button', { name: 'Guardar Cambios' }).click();
   
   // search the edited ministry and delete it
-  await page.getByRole('textbox', { name: 'Valor:' }).fill(testEdit)
-  await page.getByRole('button', { name: 'Aplicar Filtro' }).click();
+  await page.getByPlaceholder('ID mínimo').fill(testNumParams)
+  await page.getByRole('button', { name: 'Buscar' }).click();
   await page.getByRole('button', { name: 'Eliminar', exact: true }).click();
 });

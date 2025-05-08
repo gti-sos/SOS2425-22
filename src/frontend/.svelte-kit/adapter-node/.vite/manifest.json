@@ -88,6 +88,30 @@
       "_index.js"
     ]
   },
+  "src/routes/integrations/+page.svelte": {
+    "file": "entries/pages/integrations/_page.svelte.js",
+    "name": "entries/pages/integrations/_page.svelte",
+    "src": "src/routes/integrations/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.DrGWq2lj.css"
+    ]
+  },
+  "src/routes/integrations/graphs-JMRL/g19-accident-rate-stats/+page.svelte": {
+    "file": "entries/pages/integrations/graphs-JMRL/g19-accident-rate-stats/_page.svelte.js",
+    "name": "entries/pages/integrations/graphs-JMRL/g19-accident-rate-stats/_page.svelte",
+    "src": "src/routes/integrations/graphs-JMRL/g19-accident-rate-stats/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.BHNJgykA.css"
+    ]
+  },
   "src/routes/ministry-of-justice-in-zaragoza/+page.svelte": {
     "file": "entries/pages/ministry-of-justice-in-zaragoza/_page.svelte.js",
     "name": "entries/pages/ministry-of-justice-in-zaragoza/_page.svelte",
