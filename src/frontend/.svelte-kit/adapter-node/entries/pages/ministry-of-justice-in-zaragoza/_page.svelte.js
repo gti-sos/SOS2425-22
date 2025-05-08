@@ -885,14 +885,6 @@ function _page($$payload, $$props) {
                 FormGroup($$payload5, {
                   children: ($$payload6) => {
                     $$payload6.out += `<h4>Filtrar por campo</h4> `;
-                    Label($$payload6, {
-                      for: "filterField",
-                      children: ($$payload7) => {
-                        $$payload7.out += `<!---->Campo:`;
-                      },
-                      $$slots: { default: true }
-                    });
-                    $$payload6.out += `<!----> `;
                     Input($$payload6, {
                       type: "select",
                       id: "filterField",
@@ -909,13 +901,7 @@ function _page($$payload, $$props) {
                       $$slots: { default: true }
                     });
                     $$payload6.out += `<!----> `;
-                    Label($$payload6, {
-                      for: "filterValue",
-                      children: ($$payload7) => {
-                        $$payload7.out += `<!---->Valor:`;
-                      },
-                      $$slots: { default: true }
-                    });
+                    Label($$payload6, { for: "filterValue" });
                     $$payload6.out += `<!----> `;
                     Input($$payload6, {
                       id: "filterValue",
