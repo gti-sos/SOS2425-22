@@ -49,7 +49,7 @@
     <h2>Integraciones</h2>
     <ul>
         <li>
-            <a href="/integrations">Integraciones Juan Manuel Ríos López</a>
+            <a href="/integrations">Integraciones</a>
         </li>
     </ul>
 </main>

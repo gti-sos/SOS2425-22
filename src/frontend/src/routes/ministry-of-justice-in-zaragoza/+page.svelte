@@ -307,7 +307,7 @@
                     <option value="num_workers">Número de trabajadores</option>
                 </Input>
                 
-                <Label for="filterValue"></Label>
+                <Label for="filterValue"> </Label>
                 <Input bind:value={filterValue} id="filterValue" placeholder="Valor para filtrar"/>
                 
                 <div class="button-group">
