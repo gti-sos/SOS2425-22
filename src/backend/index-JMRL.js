@@ -132,7 +132,7 @@ function loadBackendJMRL(app) {
         }
 
         let d = db.find(query);
-
+        
         // APLICAMOS PAGINACION SI VIENE POR QUERY
         if (offset !== undefined) {
             d = d.skip(Number(offset));
