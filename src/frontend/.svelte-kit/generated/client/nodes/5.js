@@ -1,1 +1,1 @@
-export { default as component } from "../../../../src/routes/ministry-of-justice-in-zaragoza/+page.svelte";
+export { default as component } from "../../../../src/routes/integrations/graphs-JMRL/ext2/+page.svelte";

@@ -1067,6 +1067,7 @@ function _page($$payload, $$props) {
         Input($$payload3, {
           type: "number",
           placeholder: "ID",
+          required: true,
           get value() {
             return newMinistryId;
           },
@@ -1128,7 +1129,6 @@ function _page($$payload, $$props) {
         $$payload3.out += `<!----></td><td>`;
         Input($$payload3, {
           placeholder: "Título",
-          required: true,
           get value() {
             return newMinistryTitle;
           },
@@ -1174,6 +1174,7 @@ function _page($$payload, $$props) {
         Input($$payload3, {
           type: "number",
           placeholder: "Año",
+          required: true,
           get value() {
             return newMinistryYear;
           },

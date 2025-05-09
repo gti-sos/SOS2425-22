@@ -1,6 +1,10 @@
 {
 	"/": [],
 	"/integrations": [],
+	"/integrations/graphs-JMRL/ext1": [],
+	"/integrations/graphs-JMRL/ext2": [],
+	"/integrations/graphs-JMRL/ext3": [],
+	"/integrations/graphs-JMRL/g16-unemployment-stats": [],
 	"/integrations/graphs-JMRL/g19-accident-rate-stats": [],
 	"/ministry-of-justice-in-zaragoza": [],
 	"/ministry-of-justice-in-zaragoza/[province]/[year]/[id]": []

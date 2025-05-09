@@ -1,1 +1,1 @@
-export { default as component } from "../../../../src/routes/integrations/graphs-JMRL/g19-accident-rate-stats/+page.svelte";
+export { default as component } from "../../../../src/routes/integrations/graphs-JMRL/ext1/+page.svelte";
