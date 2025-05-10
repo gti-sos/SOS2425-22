@@ -122,7 +122,13 @@
     "file": "entries/pages/integrations/graphs-JMRL/g16-unemployment-stats/_page.svelte.js",
     "name": "entries/pages/integrations/graphs-JMRL/g16-unemployment-stats/_page.svelte",
     "src": "src/routes/integrations/graphs-JMRL/g16-unemployment-stats/+page.svelte",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_index.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.BHNJgykA.css"
+    ]
   },
   "src/routes/integrations/graphs-JMRL/g19-accident-rate-stats/+page.svelte": {
     "file": "entries/pages/integrations/graphs-JMRL/g19-accident-rate-stats/_page.svelte.js",
@@ -133,7 +139,7 @@
       "_index.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.BHNJgykA.css"
+      "_app/immutable/assets/_page.BrkbEmTt.css"
     ]
   },
   "src/routes/ministry-of-justice-in-zaragoza/+page.svelte": {

@@ -1,5 +1,5 @@
 <svelte:head>
-    <title>integracion-G19</title>
+    <title>integracion-G16</title>
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
@@ -16,13 +16,13 @@
     import { onMount } from "svelte";
 
     // @ts-ignore
-    let dataG19 = [];
+    let dataG16 = [];
     // @ts-ignore
     let dataMZ = [];
 
     let resultStatus, resultMessage = '';
 
-    let APIG19 = "https://sos2425-16.onrender.com/api/v1/unemployment-stats/";
+    let APIG16 = "https://sos2425-16.onrender.com/api/v1/unemployment-stats/";
     let API = "https://sos2425-22.onrender.com/api/v2/ministry-of-justice-in-zaragoza"
 
     // @ts-ignore
@@ -40,23 +40,23 @@
             resultado[clave][suma] += i[suma];
         });
         
-        return Object.values(resultado);
+        return Object.values(resultado);1
     }
 
     // @ts-ignore
     async function getData() {
         try {
-            const resG19 = await fetch(APIG19, {method: 'GET'});
+            const resG19 = await fetch(APIG16, {method: 'GET'});
             const resMZ = await fetch(API, {method: 'GET'});
 
             if (resG19.status === 200 && resMZ.status === 200) {
-                dataG19 = await resG19.json();
+                dataG16 = await resG19.json();
                 dataMZ = await resMZ.json();
 
-                dataG19 = sumarPorClave(dataG19, 'year', 'unemployment_rate');
+                dataG16 = sumarPorClave(dataG16, 'year', 'unemployment_rate');
                 dataMZ = sumarPorClave(dataMZ, 'year', 'num_workers');
 
-                dataG19.forEach((obj, i) => {
+                dataG16.forEach((obj, i) => {
                     // @ts-ignore
                     obj.num_workers = dataMZ[i]?.num_workers;
                 });
@@ -66,10 +66,10 @@
 				resultMessage = `No se encontraron datos`;
 			}
             // @ts-ignore
-            return dataG19;
+            return dataG16;
 
         } catch (error) {
-			console.log(`ERROR getting data from ${APIG19}: ${error}`);
+			console.log(`ERROR getting data from ${APIG16}: ${error}`);
 		}
     }
 
