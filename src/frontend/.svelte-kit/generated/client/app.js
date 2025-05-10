@@ -11,7 +11,8 @@ export const nodes = [
 	() => import('./nodes/7'),
 	() => import('./nodes/8'),
 	() => import('./nodes/9'),
-	() => import('./nodes/10')
+	() => import('./nodes/10'),
+	() => import('./nodes/11')
 ];
 
 export const server_loads = [];
@@ -19,13 +20,14 @@ export const server_loads = [];
 export const dictionary = {
 		"/": [2],
 		"/integrations": [3],
-		"/integrations/graphs-JMRL/ext1": [4],
-		"/integrations/graphs-JMRL/ext2": [5],
-		"/integrations/graphs-JMRL/ext3": [6],
-		"/integrations/graphs-JMRL/g16-unemployment-stats": [7],
-		"/integrations/graphs-JMRL/g19-accident-rate-stats": [8],
-		"/ministry-of-justice-in-zaragoza": [9],
-		"/ministry-of-justice-in-zaragoza/[province]/[year]/[id]": [10]
+		"/integrations/graphs-JMRL/allData": [4],
+		"/integrations/graphs-JMRL/ext1": [5],
+		"/integrations/graphs-JMRL/ext2": [6],
+		"/integrations/graphs-JMRL/ext3": [7],
+		"/integrations/graphs-JMRL/g16-unemployment-stats": [8],
+		"/integrations/graphs-JMRL/g19-accident-rate-stats": [9],
+		"/ministry-of-justice-in-zaragoza": [10],
+		"/ministry-of-justice-in-zaragoza/[province]/[year]/[id]": [11]
 	};
 
 export const hooks = {

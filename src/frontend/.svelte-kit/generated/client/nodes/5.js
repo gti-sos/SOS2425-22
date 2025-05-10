@@ -1,1 +1,1 @@
-export { default as component } from "../../../../src/routes/integrations/graphs-JMRL/ext2/+page.svelte";
+export { default as component } from "../../../../src/routes/integrations/graphs-JMRL/ext1/+page.svelte";

@@ -12,7 +12,7 @@ type EnsureDefined<T> = T extends null | undefined ? {} : T;
 type OptionalUnion<U extends Record<string, any>, A extends keyof U = U extends U ? keyof U : never> = U extends unknown ? { [P in Exclude<A, keyof U>]?: never } & U : never;
 export type Snapshot<T = any> = Kit.Snapshot<T>;
 type PageParentData = EnsureDefined<LayoutData>;
-type LayoutRouteId = RouteId | "/" | "/integrations" | "/integrations/graphs-JMRL/ext1" | "/integrations/graphs-JMRL/ext2" | "/integrations/graphs-JMRL/ext3" | "/integrations/graphs-JMRL/g16-unemployment-stats" | "/integrations/graphs-JMRL/g19-accident-rate-stats" | "/ministry-of-justice-in-zaragoza" | "/ministry-of-justice-in-zaragoza/[province]/[year]/[id]" | null
+type LayoutRouteId = RouteId | "/" | "/integrations" | "/integrations/graphs-JMRL/allData" | "/integrations/graphs-JMRL/ext1" | "/integrations/graphs-JMRL/ext2" | "/integrations/graphs-JMRL/ext3" | "/integrations/graphs-JMRL/g16-unemployment-stats" | "/integrations/graphs-JMRL/g19-accident-rate-stats" | "/ministry-of-justice-in-zaragoza" | "/ministry-of-justice-in-zaragoza/[province]/[year]/[id]" | null
 type LayoutParams = RouteParams & { province?: string; year?: string; id?: string }
 type LayoutParentData = EnsureDefined<{}>;
 
