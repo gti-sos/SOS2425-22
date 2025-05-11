@@ -1,4 +1,4 @@
-import { F as getContext, X as store_get, I as head, G as escape_html, Y as unsubscribe_stores, D as pop, A as push, R as attr } from "../../../../../../chunks/index.js";
+import { F as getContext, X as store_get, I as head, G as escape_html, Y as unsubscribe_stores, D as pop, A as push, J as attr } from "../../../../../../chunks/index.js";
 import "../../../../../../chunks/client.js";
 import { T as Table, B as Button } from "../../../../../../chunks/Theme.svelte_svelte_type_style_lang.js";
 const getStores = () => {

@@ -1,4 +1,4 @@
-import { J as sanitize_props, K as rest_props, M as fallback, N as spread_attributes, O as clsx, G as escape_html, E as slot, P as bind_props, D as pop, A as push, C as setContext, Q as attr_class, W as ensure_array_like } from "./index.js";
+import { M as sanitize_props, N as rest_props, O as fallback, P as spread_attributes, Q as clsx, G as escape_html, E as slot, R as bind_props, D as pop, A as push, C as setContext, S as attr_class, K as ensure_array_like } from "./index.js";
 import { w as writable } from "./exports.js";
 function isObject(value) {
   const type = typeof value;

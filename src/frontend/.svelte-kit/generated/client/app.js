@@ -13,23 +13,27 @@ export const nodes = [
 	() => import('./nodes/9'),
 	() => import('./nodes/10'),
 	() => import('./nodes/11'),
-	() => import('./nodes/12')
+	() => import('./nodes/12'),
+	() => import('./nodes/13'),
+	() => import('./nodes/14')
 ];
 
 export const server_loads = [];
 
 export const dictionary = {
 		"/": [2],
-		"/analytics": [3],
-		"/integrations": [4],
-		"/integrations/graphs-JMRL/allData": [5],
-		"/integrations/graphs-JMRL/ext1": [6],
-		"/integrations/graphs-JMRL/ext2": [7],
-		"/integrations/graphs-JMRL/ext3": [8],
-		"/integrations/graphs-JMRL/g16-unemployment-stats": [9],
-		"/integrations/graphs-JMRL/g19-accident-rate-stats": [10],
-		"/ministry-of-justice-in-zaragoza": [11],
-		"/ministry-of-justice-in-zaragoza/[province]/[year]/[id]": [12]
+		"/about": [3],
+		"/analytics": [4],
+		"/integrations": [5],
+		"/integrations/graphs-JMRL/allData": [6],
+		"/integrations/graphs-JMRL/ext1": [7],
+		"/integrations/graphs-JMRL/ext2": [8],
+		"/integrations/graphs-JMRL/ext3": [9],
+		"/integrations/graphs-JMRL/ext4": [10],
+		"/integrations/graphs-JMRL/g16-unemployment-stats": [11],
+		"/integrations/graphs-JMRL/g19-accident-rate-stats": [12],
+		"/ministry-of-justice-in-zaragoza": [13],
+		"/ministry-of-justice-in-zaragoza/[province]/[year]/[id]": [14]
 	};
 
 export const hooks = {

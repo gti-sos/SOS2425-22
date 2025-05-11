@@ -54,5 +54,8 @@
         <li>
             <a href="/analytics"> Analytics</a>
         </li>
+        <li>
+            <a href="/about"> Videos D03</a>
+        </li>
     </ul>
 </main>

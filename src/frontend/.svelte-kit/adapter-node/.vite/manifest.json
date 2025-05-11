@@ -88,6 +88,27 @@
       "_index.js"
     ]
   },
+  "src/routes/about/+page.svelte": {
+    "file": "entries/pages/about/_page.svelte.js",
+    "name": "entries/pages/about/_page.svelte",
+    "src": "src/routes/about/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js"
+    ]
+  },
+  "src/routes/analytics/+page.svelte": {
+    "file": "entries/pages/analytics/_page.svelte.js",
+    "name": "entries/pages/analytics/_page.svelte",
+    "src": "src/routes/analytics/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.CiXEfiyK.css"
+    ]
+  },
   "src/routes/integrations/+page.svelte": {
     "file": "entries/pages/integrations/_page.svelte.js",
     "name": "entries/pages/integrations/_page.svelte",
@@ -100,23 +121,62 @@
       "_app/immutable/assets/_page.DrGWq2lj.css"
     ]
   },
+  "src/routes/integrations/graphs-JMRL/allData/+page.svelte": {
+    "file": "entries/pages/integrations/graphs-JMRL/allData/_page.svelte.js",
+    "name": "entries/pages/integrations/graphs-JMRL/allData/_page.svelte",
+    "src": "src/routes/integrations/graphs-JMRL/allData/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.CiXEfiyK.css"
+    ]
+  },
   "src/routes/integrations/graphs-JMRL/ext1/+page.svelte": {
     "file": "entries/pages/integrations/graphs-JMRL/ext1/_page.svelte.js",
     "name": "entries/pages/integrations/graphs-JMRL/ext1/_page.svelte",
     "src": "src/routes/integrations/graphs-JMRL/ext1/+page.svelte",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_index.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.BlwYN5Ag.css"
+    ]
   },
   "src/routes/integrations/graphs-JMRL/ext2/+page.svelte": {
     "file": "entries/pages/integrations/graphs-JMRL/ext2/_page.svelte.js",
     "name": "entries/pages/integrations/graphs-JMRL/ext2/_page.svelte",
     "src": "src/routes/integrations/graphs-JMRL/ext2/+page.svelte",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_index.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.BGeppN0M.css"
+    ]
   },
   "src/routes/integrations/graphs-JMRL/ext3/+page.svelte": {
     "file": "entries/pages/integrations/graphs-JMRL/ext3/_page.svelte.js",
     "name": "entries/pages/integrations/graphs-JMRL/ext3/_page.svelte",
     "src": "src/routes/integrations/graphs-JMRL/ext3/+page.svelte",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_index.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.CF8AXoaS.css"
+    ]
+  },
+  "src/routes/integrations/graphs-JMRL/ext4/+page.svelte": {
+    "file": "entries/pages/integrations/graphs-JMRL/ext4/_page.svelte.js",
+    "name": "entries/pages/integrations/graphs-JMRL/ext4/_page.svelte",
+    "src": "src/routes/integrations/graphs-JMRL/ext4/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js"
+    ]
   },
   "src/routes/integrations/graphs-JMRL/g16-unemployment-stats/+page.svelte": {
     "file": "entries/pages/integrations/graphs-JMRL/g16-unemployment-stats/_page.svelte.js",
@@ -139,7 +199,7 @@
       "_index.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.BrkbEmTt.css"
+      "_app/immutable/assets/_page.BHNJgykA.css"
     ]
   },
   "src/routes/ministry-of-justice-in-zaragoza/+page.svelte": {

@@ -161,7 +161,7 @@
             },
             series: [
                 {
-                    name: 'Prueba',
+                    name: 'Numero trabajadores',
                     colorByPoint: true,
                     data: graphData
                 }
