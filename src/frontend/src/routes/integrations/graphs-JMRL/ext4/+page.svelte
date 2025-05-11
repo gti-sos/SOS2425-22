@@ -21,9 +21,7 @@
       }
     });
   </script>
-  
-  <h2>Lista de productos (DummyJSON API)</h2>
-  
+    
   {#if error}
     <p style="color: red;">{error}</p>
   {:else if products.length === 0}
@@ -34,7 +32,6 @@
         <tr>
           <th>ID</th>
           <th>Nombre</th>
-          <th>Marca</th>
           <th>Precio</th>
           <th>Descripción</th>
         </tr>
@@ -44,7 +41,6 @@
           <tr>
             <td>{product.id}</td>
             <td>{product.title}</td>
-            <td>{product.brand}</td>
             <td>{product.price}€</td>
             <td>{product.description}</td>
           </tr>

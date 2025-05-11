@@ -55,6 +55,14 @@
             </tr>
             <tr>
                 <td>
+                    <a href="/integrations/graphs-JMRL/ext4">Integración API externa 4</a>
+                </td>
+                <td>
+                    <!-- integracion AMG  -->
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <a href="/integrations/graphs-JMRL/allData">Visualizacion de todos los datos</a>
                 </td>
                 <td>
