@@ -68,10 +68,10 @@
     let resultStatus, resultMessage = '';
 
     // @ts-ignore
-    let API = "https://sos2425-22.onrender.com/api/v2/ministry-of-justice-in-zaragoza"
+    let APIJMRL = "https://sos2425-22.onrender.com/api/v2/ministry-of-justice-in-zaragoza"
 
     // @ts-ignore
-    function sumarPorClave(arr, agrupar, suma) {
+    function sumarPorClaveJMRL(arr, agrupar, suma) {
     const resultado = {};
     // @ts-ignore
     arr.forEach(i => {
@@ -88,13 +88,13 @@
 }
 
     // @ts-ignore
-    async function getData() {
+    async function getDataJMRL() {
         try {
-            const resMZ = await fetch(API, {method: 'GET'});
+            const resMZ = await fetch(APIJMRL, {method: 'GET'});
 
             if (resMZ.status === 200) {
                 dataMZ = await resMZ.json();
-                dataMZ = sumarPorClave(dataMZ, 'id', 'num_workers');
+                dataMZ = sumarPorClaveJMRL(dataMZ, 'id', 'num_workers');
 
                 console.log(`Response received`);
             } else if (resMZ.status === 404) {
@@ -105,13 +105,13 @@
             return dataMZ;
 
         } catch (error) {
-			console.log(`ERROR getting data from ${API}: ${error}`);
+			console.log(`ERROR getting data from ${APIJMRL}: ${error}`);
 		}
     }
 
     onMount(async() => {
         // @ts-ignore
-        let graphData = await getData();
+        let graphDataJMRL = await getDataJMRL();
         // @ts-ignore
         Highcharts.chart('container', {
             chart: {
@@ -126,7 +126,7 @@
                 panKey: 'shift'
             },
             title: {
-                text: 'Grafica por ID y numero de trabajadores'
+                text: 'Datos JRML y AMG'
             },
             tooltip: {
                 valueSuffix: '%'
@@ -163,7 +163,7 @@
                 {
                     name: 'Prueba',
                     colorByPoint: true,
-                    data: graphData
+                    data: graphDataJMRL
                 }
             ]
         });

@@ -51,5 +51,8 @@
         <li>
             <a href="/integrations">Integraciones</a>
         </li>
+        <li>
+            <a href="/analytics"> Analytics</a>
+        </li>
     </ul>
 </main>
