@@ -13,9 +13,6 @@ app.use(cors());
 loadBackendAMG(app);
 loadBackendJMRL(app);
 
-//app.use("/about", express.static("./about"));
-//app.use("/", express.static("./public"));
-
 
 app.use(handler);
 app.listen(PORT, () => {

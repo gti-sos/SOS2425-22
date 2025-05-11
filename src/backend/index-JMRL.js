@@ -9,6 +9,7 @@ const { parse } = require('csv-parse/sync');
 // IMPORTAMOS LAS FUNCIONES PARA LA BASE DE DATOS
 import dataStore from "nedb";
 import { basename } from 'path';
+//const request =  require('request');
 
 //LEEMOS EL CSV
 let fileContent = readFileSync('src/backend/input-JMRL.csv', 'utf-8');
@@ -263,7 +264,17 @@ function loadBackendJMRL(app) {
         });
     });
 
+    // Proxy API externa 4
+    var paths='/api/dummy-products';
+    var apiServerHost = 'https://dummyjson.com/products';
+
+    app.use(paths, function(req, res) {
+        var url = apiServerHost + req.url;
+        console.log('piped: ' + req.url);
+        req.pipe(request(url)).pipe(res);
+    });
 };
+
 
 //EXPORTAMOS LAS DISTINTAS FUNCIONES
 export { loadBackendJMRL, csvContent, loadInitialDataJMRL }

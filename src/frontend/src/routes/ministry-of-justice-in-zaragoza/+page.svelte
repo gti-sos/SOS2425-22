@@ -385,16 +385,16 @@
         <tr>
             <td><Input bind:value={newMinistryProvince} placeholder="Provincia" required/></td>
             <td><Input type="number" bind:value={newMinistryCreationYear} placeholder="Año creación"/></td>
-            <td><Input type="number" bind:value={newMinistryId} placeholder="ID"/></td>
+            <td><Input type="number" bind:value={newMinistryId} placeholder="ID" required/></td>
             <td><Input type="number" bind:value={newMinistryPortalId} placeholder="Portal ID"/></td>
             <td><Input type="number" bind:value={newMinistryPostalCode} placeholder="Código postal"/></td>
             <td><Input type="number" step="0.000001" bind:value={newMinistryLatitude} placeholder="Latitud"/></td>
             <td><Input type="number" step="0.000001" bind:value={newMinistryLength} placeholder="Longitud"/></td>
-            <td><Input bind:value={newMinistryTitle} placeholder="Título" required/></td>
+            <td><Input bind:value={newMinistryTitle} placeholder="Título"/></td>
             <td><Input bind:value={newMinistryEquipmentType} placeholder="Tipo equipo"/></td>
             <td><Input bind:value={newMinistryPublicTitularity} placeholder="Titularidad"/></td>
             <td><Input bind:value={newMinistryStreetAddress} placeholder="Dirección"/></td>
-            <td><Input type="number" bind:value={newMinistryYear} placeholder="Año"/></td>
+            <td><Input type="number" bind:value={newMinistryYear} placeholder="Año" required/></td>
             <td><Input type="number" bind:value={newMinistryNumWorkers} placeholder="Trabajadores"/></td>
             <td>
                 <Button color="success" on:click={createMinistry} disabled={isLoading}>

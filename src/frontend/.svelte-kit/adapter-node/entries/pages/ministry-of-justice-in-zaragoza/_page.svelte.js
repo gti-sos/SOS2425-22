@@ -1,4 +1,4 @@
-import { J as sanitize_props, K as rest_props, A as push, M as fallback, N as spread_attributes, O as clsx, E as slot, P as bind_props, D as pop, Q as attr_class, R as attr, G as escape_html, S as sanitize_slots, T as copy_payload, U as assign_payload, V as spread_props, W as ensure_array_like, I as head } from "../../../chunks/index.js";
+import { M as sanitize_props, N as rest_props, A as push, O as fallback, P as spread_attributes, Q as clsx, E as slot, R as bind_props, D as pop, S as attr_class, J as attr, G as escape_html, T as sanitize_slots, U as copy_payload, V as assign_payload, W as spread_props, K as ensure_array_like, I as head } from "../../../chunks/index.js";
 import "../../../chunks/client.js";
 import "clsx";
 import { i as isObject, g as getColumnSizeClass, c as classnames, B as Button, T as Table } from "../../../chunks/Theme.svelte_svelte_type_style_lang.js";
@@ -1067,6 +1067,7 @@ function _page($$payload, $$props) {
         Input($$payload3, {
           type: "number",
           placeholder: "ID",
+          required: true,
           get value() {
             return newMinistryId;
           },
@@ -1128,7 +1129,6 @@ function _page($$payload, $$props) {
         $$payload3.out += `<!----></td><td>`;
         Input($$payload3, {
           placeholder: "Título",
-          required: true,
           get value() {
             return newMinistryTitle;
           },
@@ -1174,6 +1174,7 @@ function _page($$payload, $$props) {
         Input($$payload3, {
           type: "number",
           placeholder: "Año",
+          required: true,
           get value() {
             return newMinistryYear;
           },
